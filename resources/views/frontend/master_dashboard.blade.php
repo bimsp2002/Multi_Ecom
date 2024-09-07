@@ -31,7 +31,6 @@
 
 <body>
     <!-- Modal -->
-
     <!-- Quick view -->
     @include('frontend.body.quickview')
 
