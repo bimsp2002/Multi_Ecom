@@ -52,7 +52,7 @@
                                     <div class="padding_eight_all bg-white">
                                         <div class="heading_s1">
                                             <h1 class="mb-5">Login</h1>
-                                            <p class="mb-30">Don't have an account? <a href="">Create
+                                            <p class="mb-30">Don't have an account? <a href="{{ route('register') }}">Create
                                                     here</a></p>
                                         </div>
 

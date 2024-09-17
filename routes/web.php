@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Backend\BrandController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +23,12 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
+    Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
+}); // Gorup Milldeware End
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -30,32 +36,31 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
- /// admin dashboard
-Route::middleware(['auth','role:admin'])->group(function() {
+/// admin dashboard
+Route::middleware(['auth', 'role:admin'])->group(function () {
 
-    Route::get('admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
-    
-    Route::get('admin/logout',[AdminController::class,'AdminDestroy'])->name('admin.logout');
+    Route::get('admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
 
-    Route::get('admin/profile',[AdminController::class,'AdminProfile'])->name('admin.profile');
+    Route::get('admin/logout', [AdminController::class, 'AdminDestroy'])->name('admin.logout');
+
+    Route::get('admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
 
     Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
-   
+
     Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
 
     Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('update.password');
-
 });
 
 
- /// vendor  dashboard
-Route::middleware(['auth','role:vendor'])->group(function() {
-    Route::get('vendor/dashboard',[VendorController::class,'VendorDashboard'])->name('vendor.dashboard');
-   
+/// vendor  dashboard
+Route::middleware(['auth', 'role:vendor'])->group(function () {
+    Route::get('vendor/dashboard', [VendorController::class, 'VendorDashboard'])->name('vendor.dashboard');
+
     Route::get('/vendor/logout', [VendorController::class, 'VendorDestroy'])->name('vendor.logout');
-  
+
     Route::get('/vendor/profile', [VendorController::class, 'VendorProfile'])->name('vendor.profile');
 
     Route::post('/vendor/profile/store', [VendorController::class, 'VendorProfileStore'])->name('vendor.profile.store');
@@ -63,13 +68,17 @@ Route::middleware(['auth','role:vendor'])->group(function() {
     Route::get('/vendor/change/password', [VendorController::class, 'VendorChangePassword'])->name('vendor.change.password');
 
     Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
-
-
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin']);
 
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
 
-
+    // Brand All Route 
+    Route::controller(BrandController::class)->group(function () {
+        Route::get('/all/brand', 'AllBrand')->name('all.brand');
+   
+    });
+}); //endmiddler 
