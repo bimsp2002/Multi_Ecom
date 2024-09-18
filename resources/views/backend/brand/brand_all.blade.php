@@ -29,7 +29,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Sl</th>
+                                <th>SN</th>
                                 <th>Brand Name </th>
                                 <th>Brand Image </th>
                                 <th>Action</th>

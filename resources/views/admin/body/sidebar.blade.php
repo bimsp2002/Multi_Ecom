@@ -12,8 +12,8 @@
     <!--navigation-->
     <ul class="metismenu" id="menu">
 
-            <li>
-            <a href="{{route('admin.dashboard')}}">
+        <li>
+            <a href="{{ route('admin.dashboard') }}">
                 <div class="parent-icon"><i class='bx bx-home-circle'></i>
                 </div>
                 <div class="menu-title">Dashboard</div>
@@ -27,9 +27,9 @@
                 <div class="menu-title">Brand</div>
             </a>
             <ul>
-                <li> <a href="{{route('all.brand')}}"><i class="bx bx-right-arrow-alt"></i>All Brand</a>
+                <li> <a href="{{ route('all.brand') }}"><i class="bx bx-right-arrow-alt"></i>All Brand</a>
                 </li>
-                <li> <a href="{{route('add.brand')}}"><i class="bx bx-right-arrow-alt"></i>Add Brand </a>
+                <li> <a href="{{ route('add.brand') }}"><i class="bx bx-right-arrow-alt"></i>Add Brand </a>
                 </li>
             </ul>
         </li>
@@ -41,16 +41,16 @@
                 <div class="menu-title">Category</div>
             </a>
             <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Category</a>
+                <li> <a href="{{ route('all.category') }}"><i class="bx bx-right-arrow-alt"></i>All Category</a>
                 </li>
-                
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Add Category</a>
+
+                <li> <a href="{{ route('add.category') }}"><i class="bx bx-right-arrow-alt"></i>Add Category</a>
                 </li>
-                
-                 
+
+
             </ul>
         </li>
-        
+
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="lni lni-codepen"></i>
@@ -58,101 +58,20 @@
                 <div class="menu-title">SubCategory</div>
             </a>
             <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All SubCategory</a>
+                <li> <a href="{{ route('all.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>All SubCategory</a>
                 </li>
-                
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Add SubCategory</a>
+
+                <li> <a href="{{ route('add.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Add SubCategory</a>
                 </li>
-                
-                 
+
+
             </ul>
         </li>
 
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="lni lni-fresh-juice"></i>
-                </div>
-                <div class="menu-title">Product Manage</div>
-            </a>
-            <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Product</a>
-                </li>
-                
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Add Product</a>
-                </li>
-                
-                 
-            </ul>
-        </li>
-        
+     
 
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="lni lni-gallery"></i>
-                </div>
-                <div class="menu-title">Slider Manage</div>
-            </a>
-            <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Slider</a>
-                </li>
-                
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Add Slider</a>
-                </li>
-                
-                 
-            </ul>
-        </li>
 
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="lni lni-image"></i>
-                </div>
-                <div class="menu-title">Banner Manage</div>
-            </a>
-            <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Banner</a>
-                </li>
-                
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Add Banner</a>
-                </li>
-                 
-            </ul>
-        </li>
-
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="lni lni-invention"></i>
-                </div>
-                <div class="menu-title">Coupon System</div>
-            </a>
-            <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Coupon</a>
-                </li>
-                
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Add Coupon</a>
-                </li>
-                
-                 
-            </ul>
-        </li>
-
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class="lni lni-map"></i>
-                </div>
-                <div class="menu-title">Shipping Area </div>
-            </a>
-            <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Division</a>
-                </li>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All District</a>
-                </li>
-
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All State</a>
-                </li>
-                 
-            </ul>
-        </li>
+    
 
 
         <li class="menu-label">UI Elements</li>
@@ -167,10 +86,10 @@
                 </li>
                 <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Active Vendor</a>
                 </li>
-                 
+
             </ul>
         </li>
-        
+
 
         <li>
             <a href="javascript:;" class="has-arrow">
@@ -188,8 +107,8 @@
                 <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Delivered Order</a>
                 </li>
 
-             
-                 
+
+
             </ul>
         </li>
 
@@ -204,11 +123,11 @@
                 <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Return Request</a>
                 </li>
                 <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Complete Request</a>
-                </li> 
+                </li>
             </ul>
         </li>
 
-<li>
+        <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="lni lni-stats-up"></i>
                 </div>
@@ -218,15 +137,15 @@
                 <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Report View</a>
                 </li>
 
-                    <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Order By User</a>
+                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Order By User</a>
                 </li>
-                 
-                 
+
+
             </ul>
         </li>
 
 
-<li>
+        <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="lni lni-slideshare"></i>
                 </div>
@@ -236,10 +155,10 @@
                 <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All User</a>
                 </li>
 
-                    <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Vendor</a>
+                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Vendor</a>
                 </li>
-                 
-                 
+
+
             </ul>
         </li>
 
@@ -253,65 +172,65 @@
                 <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Blog Categroy</a>
                 </li>
 
-                    <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Blog Post</a>
+                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Blog Post</a>
                 </li>
-                 
-                 
+
+
             </ul>
         </li>
 
-<li>
-<a href="javascript:;" class="has-arrow">
-    <div class="parent-icon"><i class="lni lni-indent-increase"></i>
-    </div>
-    <div class="menu-title">Review Manage</div>
-</a>
-<ul>
-    <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Pending Review</a>
-    </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="lni lni-indent-increase"></i>
+                </div>
+                <div class="menu-title">Review Manage</div>
+            </a>
+            <ul>
+                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Pending Review</a>
+                </li>
 
-        <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Publish Review</a>
-    </li>
-     
-     
-</ul>
-</li>
+                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Publish Review</a>
+                </li>
+
+
+            </ul>
+        </li>
 
         <li>
-<a href="javascript:;" class="has-arrow">
-    <div class="parent-icon"><i class="lni lni-cog"></i>
-    </div>
-    <div class="menu-title">Setting Manage</div>
-</a>
-<ul>
-    <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Site Setting</a>
-    </li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="lni lni-cog"></i>
+                </div>
+                <div class="menu-title">Setting Manage</div>
+            </a>
+            <ul>
+                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Site Setting</a>
+                </li>
 
-        <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Seo Setting</a>
-    </li>
-     
-     
-</ul>
-</li>
-     
+                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Seo Setting</a>
+                </li>
 
-<li>
-<a href="javascript:;" class="has-arrow">
-    <div class="parent-icon"><i class="lni lni-cart-full"></i>
-    </div>
-    <div class="menu-title">Stock Manage</div>
-</a>
-<ul>
-    <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Product Stock</a>
-    </li>
 
-         
-     
-     
-</ul>
-</li>
-		 
-             <li class="menu-label">Roles And Permission</li>
+            </ul>
+        </li>
+
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="lni lni-cart-full"></i>
+                </div>
+                <div class="menu-title">Stock Manage</div>
+            </a>
+            <ul>
+                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Product Stock</a>
+                </li>
+
+
+
+
+            </ul>
+        </li>
+
+        <li class="menu-label">Roles And Permission</li>
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="lni lni-users"></i>
@@ -329,10 +248,10 @@
 
                 <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Roles in Permission</a>
                 </li>
-             
+
             </ul>
         </li>
-				          
+
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="lni lni-user"></i>
@@ -345,12 +264,12 @@
                 <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Add Admin</a>
                 </li>
 
-             
+
             </ul>
         </li>
-    	 	 
- 
-      
+
+
+
         <li>
             <a href=" " target="_blank">
                 <div class="parent-icon"><i class="bx bx-support"></i>
