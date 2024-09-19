@@ -7,19 +7,25 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
+use App\Notifications\VendorRegNotification;
+use Illuminate\Support\Facades\Notification;
+
+
 class VendorController extends Controller
 {
-    public function VendorDashboard(){
+    public function VendorDashboard()
+    {
 
         return view('vendor.index');
-
     } // End method
-    
-    public function VendorLogin(){
+
+    public function VendorLogin()
+    {
         return view('vendor.vendor_login');
     } // End Mehtod 
 
-    public function VendorDestroy(Request $request){
+    public function VendorDestroy(Request $request)
+    {
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
@@ -30,31 +36,32 @@ class VendorController extends Controller
     } // End Mehtod 
 
 
-    public function VendorProfile(){
+    public function VendorProfile()
+    {
 
         $id = Auth::user()->id;
         $vendorData = User::find($id);
-        return view('vendor.vendor_profile_view',compact('vendorData'));
+        return view('vendor.vendor_profile_view', compact('vendorData'));
+    }
 
-    } 
-
-    public function VendorProfileStore(Request $request){
+    public function VendorProfileStore(Request $request)
+    {
 
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;
-        $data->address = $request->address; 
-        $data->vendor_join = $request->vendor_join; 
-        $data->vendor_short_info = $request->vendor_short_info; 
+        $data->address = $request->address;
+        $data->vendor_join = $request->vendor_join;
+        $data->vendor_short_info = $request->vendor_short_info;
 
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/vendor_images/'.$data->photo));
-            $filename = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/vendor_images'),$filename);
+            @unlink(public_path('upload/vendor_images/' . $data->photo));
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('upload/vendor_images'), $filename);
             $data['photo'] = $filename;
         }
 
@@ -66,18 +73,19 @@ class VendorController extends Controller
         );
 
         return redirect()->back()->with($notification);
-
     } // End Mehtod 
 
-    public function VendorChangePassword(){
+    public function VendorChangePassword()
+    {
         return view('vendor.vendor_change_password');
     } // End Mehtod 
 
-    public function VendorUpdatePassword(Request $request){
+    public function VendorUpdatePassword(Request $request)
+    {
         // Validation 
         $request->validate([
             'old_password' => 'required',
-            'new_password' => 'required|confirmed', 
+            'new_password' => 'required|confirmed',
         ]);
 
         // Match The Old Password
@@ -91,8 +99,42 @@ class VendorController extends Controller
 
         ]);
         return back()->with("status", " Password Changed Successfully");
-
     } // End Mehtod 
+
+
+    public function BecomeVendor()
+    {
+        return view('auth.become_vendor');
+    } // End Mehtod 
+
+
+    public function VendorRegister(Request $request) {
+       
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        $user = User::insert([ 
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'vendor_join' => $request->vendor_join,
+            'password' => Hash::make($request->password),
+            'role' => 'vendor',
+            'status' => 'inactive',
+        ]);
+
+          $notification = array(
+            'message' => 'Vendor Registered Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('vendor.login')->with($notification);
+       
+    }// End Mehtod 
 
 
 
