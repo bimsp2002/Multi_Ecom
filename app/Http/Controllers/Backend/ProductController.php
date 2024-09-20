@@ -109,4 +109,142 @@ class ProductController extends Controller
 
 
 
+    public function EditProduct($id)
+    {
+
+        $multiImgs = MultiImg::where('product_id', $id)->get();
+        $activeVendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+        $subcategory = SubCategory::latest()->get();
+        $products = Product::findOrFail($id);
+        return view('backend.product.product_edit', compact('brands', 'categories', 'activeVendor', 'products', 'subcategory', 'multiImgs'));
+    } // End Method 
+
+    public function UpdateProduct(Request $request)
+    {
+
+        $product_id = $request->id;
+
+        Product::findOrFail($product_id)->update([
+
+            'brand_id' => $request->brand_id,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'product_name' => $request->product_name,
+            'product_slug' => strtolower(str_replace(' ', '-', $request->product_name)),
+
+            'product_code' => $request->product_code,
+            'product_qty' => $request->product_qty,
+            'product_tags' => $request->product_tags,
+            'product_size' => $request->product_size,
+            'product_color' => $request->product_color,
+
+            'selling_price' => $request->selling_price,
+            'discount_price' => $request->discount_price,
+            'short_descp' => $request->short_descp,
+            'long_descp' => $request->long_descp,
+
+            'hot_deals' => $request->hot_deals,
+            'featured' => $request->featured,
+            'special_offer' => $request->special_offer,
+            'special_deals' => $request->special_deals,
+
+
+            'vendor_id' => $request->vendor_id,
+            'status' => 1,
+            'created_at' => Carbon::now(),
+
+        ]);
+        $notification = array(
+            'message' => 'Product Updated Without Image Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.product')->with($notification);
+    } // End Method
+
+    public function UpdateProductThambnail(Request $request)
+    {
+
+        $pro_id = $request->id;
+        $oldImage = $request->old_img;
+        if ($request->file('product_thambnail')) {
+
+            $image = $request->file('product_thambnail');
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            $name_gen = hexdec(uniqid()) . '.' . $request->file('product_thambnail')->getClientOriginalExtension();
+            $img = $manager->read($request->file('product_thambnail'));
+            $img = $img->resize(400, 400);
+            $img->toJpeg(80)->save(base_path('public/upload/product/thambnail/' . $name_gen));
+            $save_url = 'upload/product/thambnail/' . $name_gen;
+
+            if (file_exists($oldImage)) {
+                unlink($oldImage);
+            }
+
+            Product::findOrFail($pro_id)->update([
+
+                'product_thambnail' => $save_url,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Product Image Thambnail Updated Successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+    } // End Method
+    // Multi Image Update 
+    public function UpdateProductMultiimage(Request $request)
+    {
+
+        if ($request->hasFile('multi_img')) {
+            $images = $request->file('multi_img');
+            $manager = new ImageManager(new Driver());
+            foreach ($images as $id => $img) {
+                $imgDel = MultiImg::findOrFail($id);
+                unlink($imgDel->photo_name);
+                $name_gen = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension(); // Use $img instead of $request->file('multi_img')
+                $img = $manager->read($img); // Read the current image
+                $img = $img->resize(400, 400);
+                $img->toJpeg(80)->save(base_path('public/upload/product/multi_img/' . $name_gen)); // Added '/' before $name_gen
+                $save_url = 'upload/product/multi_img/' . $name_gen; // Added '/' before $name_gen
+
+                MultiImg::where('id', $id)->update([
+                    'photo_name' => $save_url,
+                    'updated_at' => Carbon::now(),
+
+                ]);
+            }
+        } // end foreach
+
+        $notification = array(
+            'message' => 'Product Multi Image Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // End Method 
+
+    public function MulitImageDelelte($id)
+    {
+        $oldImg = MultiImg::findOrFail($id);
+        unlink($oldImg->photo_name);
+
+        MultiImg::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Product Multi Image Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // End Method 
+
+
+
 }

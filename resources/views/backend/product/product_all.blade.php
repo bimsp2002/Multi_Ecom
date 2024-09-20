@@ -10,7 +10,8 @@
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">All Product  <span class="badge rounded-pill bg-danger"> {{ count($products) }} </span> </li>
+								<li class="breadcrumb-item active" aria-current="page">All Product 
+									 <span class="badge rounded-pill bg-danger fs-6"> {{ count($products) }} </span> </li>
 							</ol>
 						</nav>
 					</div>
@@ -54,9 +55,9 @@
 			@else
 			@php
 			$amount = $item->selling_price - $item->discount_price;
-			$discount = ($amount/$item->selling_price) * 100;
+			$discount = ($item->discount_price/$item->selling_price) * 100;
 			@endphp
-		<span class="badge rounded-pill bg-danger"> {{ round($discount) }}%</span>
+		<span class="badge rounded-pill bg-danger"> {{  ($discount) }}%</span>
 			@endif
 					 </td>
 
@@ -71,7 +72,7 @@
 				
 				<td>
 
-<a href="" class="btn btn-info" title="Edit Data"> <i class="fa fa-pencil"></i> </a>
+<a href="{{ route('edit.product',$item->id) }}" class="btn btn-info" title="Edit Data"> <i class="fa fa-pencil"></i> </a>
 
 <a href="" class="btn btn-danger" id="delete" title="Delete Data" ><i class="fa fa-trash"></i></a>
 <a href="" class="btn btn-warning" title="Details Page"> <i class="fa fa-eye"></i> </a>
@@ -83,7 +84,7 @@
 @endif
 
 				</td> 
-			</tr>
+			</tr>    
 			@endforeach
 			 
 		 
