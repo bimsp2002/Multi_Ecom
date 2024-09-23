@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 
 /*
@@ -73,15 +74,16 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
 });
 
-Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
-Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login');
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
+
+Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
+
 Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
 Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
 
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-
     // Brand All Route 
     Route::controller(BrandController::class)->group(function () {
         Route::get('/all/brand', 'AllBrand')->name('all.brand');
@@ -134,15 +136,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/product/thambnail' , 'UpdateProductThambnail')->name('update.product.thambnail');
         Route::post('/update/product/multiimage' , 'UpdateProductMultiimage')->name('update.product.multiimage');
         Route::get('/product/multiimg/delete/{id}' , 'MulitImageDelelte')->name('product.multiimg.delete');
-
-       // Route::get('/product/inactive/{id}' , 'ProductInactive')->name('product.inactive');
-       // Route::get('/product/active/{id}' , 'ProductActive')->name('product.active');
-       // Route::get('/delete/product/{id}' , 'ProductDelete')->name('delete.product');
+        Route::get('/product/inactive/{id}' , 'ProductInactive')->name('product.inactive');
+        Route::get('/product/active/{id}' , 'ProductActive')->name('product.active');
+       Route::get('/delete/product/{id}' , 'ProductDelete')->name('delete.product');
 
         // For Product Stock
        //  Route::get('/product/stock' , 'ProductStock')->name('product.stock');
-        
-
 });
 
 

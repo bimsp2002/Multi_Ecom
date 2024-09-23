@@ -253,10 +253,10 @@
 	<table class="table mb-0 table-striped">
 		<thead>
 			<tr>
-				<th scope="col">#Sl</th>
+				<th scope="col">SN</th>
 				<th scope="col">Image</th>
 				<th scope="col">Change Image </th>
-				<th scope="col">Delete </th>
+				<th scope="col">Delete/Update </th>
 			</tr>
 		</thead>
 		<tbody>
