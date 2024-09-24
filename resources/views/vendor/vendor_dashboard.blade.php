@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
     <link rel="icon" href="{{ asset('adminbackend/assets/images/favicon-32x32.png') }}" type="image/png" />
+    <script src="https://cdn.tiny.cloud/1/060hji6rn8xw6u9nh4h3le9ynmvy5uzdux8eczkn8e862vwg/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
     <link href="{{ asset('adminbackend/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
 
@@ -129,9 +130,6 @@
     <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
 
     <script src="{{ asset('adminbackend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
-
-    <script src='https://cdn.tiny.cloud/1/vdqx2klew412up5bcbpwivg1th6nrh3murc6maz8bukgos4v/tinymce/5/tinymce.min.js'
-        referrerpolicy="origin"></script>
 
     <script>
         tinymce.init({

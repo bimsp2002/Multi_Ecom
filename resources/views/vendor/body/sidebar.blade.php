@@ -22,7 +22,7 @@
 			<ul class="metismenu" id="menu">
 
 					<li>
-					<a href="{{ route('vendor.dashboard')}}">
+					<a href="{{ route('vendor.dashboard') }}">
 						<div class="parent-icon"><i class='bx bx-home-circle'></i>
 						</div>
 						<div class="menu-title">Dashboard</div>
@@ -39,9 +39,9 @@
 						<div class="menu-title">Product Manage </div>
 					</a>
 					<ul>
-						<li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Product</a>
+						<li> <a href="{{ route('vendor.all.product') }}"><i class="bx bx-right-arrow-alt"></i>All Product</a>
 						</li>
-						<li> <a href=""><i class="bx bx-right-arrow-alt"></i>Add Product</a>
+						<li> <a href="{{ route('vendor.add.product') }}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
 						</li>
 						 
 					</ul>
