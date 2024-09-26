@@ -12,8 +12,8 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SliderController;
-
-
+use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Frontend\IndexController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -104,26 +104,26 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
 
 
-    Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
     // Brand All Route 
-         Route::controller(BrandController::class)->group(function () {
-            Route::get('/all/brand', 'AllBrand')->name('all.brand');
-            Route::get('/add/brand', 'AddBrand')->name('add.brand');
-            Route::post('/store/brand', 'StoreBrand')->name('store.brand');
-            Route::get('/edit/brand/{id}', 'EditBrand')->name('edit.brand');
-            Route::post('/update/brand', 'UpdateBrand')->name('update.brand');
-            Route::get('/delete/brand/{id}', 'DeleteBrand')->name('delete.brand');
+    Route::controller(BrandController::class)->group(function () {
+        Route::get('/all/brand', 'AllBrand')->name('all.brand');
+        Route::get('/add/brand', 'AddBrand')->name('add.brand');
+        Route::post('/store/brand', 'StoreBrand')->name('store.brand');
+        Route::get('/edit/brand/{id}', 'EditBrand')->name('edit.brand');
+        Route::post('/update/brand', 'UpdateBrand')->name('update.brand');
+        Route::get('/delete/brand/{id}', 'DeleteBrand')->name('delete.brand');
     });
 
     // Category All Route 
-        Route::controller(CategoryController::class)->group(function () {
-            Route::get('/all/category', 'AllCategory')->name('all.category');
-            Route::get('/add/category', 'AddCategory')->name('add.category');
-            Route::post('/store/category', 'StoreCategory')->name('store.category');
-            Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
-            Route::post('/update/category', 'UpdateCategory')->name('update.category');
-            Route::get('/delete/category/{id}', 'DeleteCategory')->name('delete.category');
-    }); 
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/all/category', 'AllCategory')->name('all.category');
+        Route::get('/add/category', 'AddCategory')->name('add.category');
+        Route::post('/store/category', 'StoreCategory')->name('store.category');
+        Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
+        Route::post('/update/category', 'UpdateCategory')->name('update.category');
+        Route::get('/delete/category/{id}', 'DeleteCategory')->name('delete.category');
+    });
 
     // SubCategory All Route 
     Route::controller(SubCategoryController::class)->group(function () {
@@ -164,17 +164,35 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
         //  Route::get('/product/stock' , 'ProductStock')->name('product.stock');
     });
 
-     // Slider All Route 
-    Route::controller(SliderController::class)->group(function(){
-        Route::get('/all/slider' , 'AllSlider')->name('all.slider');
-        Route::get('/add/slider' , 'AddSlider')->name('add.slider');
-        Route::post('/store/slider' , 'StoreSlider')->name('store.slider');
-        Route::get('/edit/slider/{id}' , 'EditSlider')->name('edit.slider');
-        Route::post('/update/slider' , 'UpdateSlider')->name('update.slider');
-        Route::get('/delete/slider/{id}' , 'DeleteSlider')->name('delete.slider');
-
-});
-
+    // Slider All Route 
+    Route::controller(SliderController::class)->group(function () {
+        Route::get('/all/slider', 'AllSlider')->name('all.slider');
+        Route::get('/add/slider', 'AddSlider')->name('add.slider');
+        Route::post('/store/slider', 'StoreSlider')->name('store.slider');
+        Route::get('/edit/slider/{id}', 'EditSlider')->name('edit.slider');
+        Route::post('/update/slider', 'UpdateSlider')->name('update.slider');
+        Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
+    });
+    // Banner All Route 
+    route::controller(BannerController::class)->group(function () {
+        Route::get('/all/banner', 'AllBanner')->name('all.banner');
+        Route::get('/add/banner', 'AddBanner')->name('add.banner');
+        Route::post('/store/banner', 'StoreBanner')->name('store.banner');
+        Route::get('/edit/banner/{id}', 'EditBanner')->name('edit.banner');
+        Route::post('/update/banner', 'UpdateBanner')->name('update.banner');
+        Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
+    });
 
 
 }); //endmiddler 
+
+/// Frontend Product Details All Route 
+
+    Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+    //Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
+
+    //Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
+
+    //Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
+
+    //Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
