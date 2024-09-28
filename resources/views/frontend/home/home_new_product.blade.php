@@ -1,6 +1,7 @@
 @php
     $products = App\Models\Product::where('status', 1)->orderBy('id', 'DESC')->limit(10)->get();
-    $categories = App\Models\Category::orderBy('category_name', 'ASC')->limit(4)->get();
+    $categories = App\Models\Category::orderBy('category_name', 'ASC')->limit(4)->get();    
+
 @endphp
 
 <section class="product-tabs section-padding position-relative">
@@ -32,8 +33,7 @@
                                 data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a
-                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                        <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             <img class="default-img" src="{{ asset($product->product_thambnail) }}"
                                                 alt="" />
 
@@ -54,9 +54,11 @@
                                     </div>
 
                                     @php
+                                      
+
 
                                         $amount = $product->selling_price - $product->discount_price;
-                                        $discount = ($product->discount_price / $product->selling_price) * 100;
+                                        $discount = ($product->discount_price/$product->selling_price) * 100;
                                     @endphp
 
 
@@ -72,28 +74,28 @@
                                     </div>
                                 </div>
                                 <div class="product-content-wrap">
+
                                     <div class="product-category">
                                         <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
                                     </div>
-                                    <h2><a
-                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                    <h2><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             {{ $product->product_name }} </a></h2>
-
+                        
 
 
 
                                     <div>
+                                        
                                         @if ($product->vendor_id == null)
                                             <span class="font-small text-muted">By <a
-                                                    href="vendor-details-1.html">Owner</a></span>
+                                                    href="#">Owner</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
-                                                    href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
+                                                    href="#">{{ $product['vendor']['name'] }}</a></span>
                                         @endif
-
-
-
+                                    
                                     </div>
+
                                     <div class="product-card-bottom">
 
                                         @if ($product->discount_price == null)
@@ -103,7 +105,7 @@
                                             </div>
                                         @else
                                             <div class="product-price">
-                                                <span>Rs.{{ $amount }}</span>
+                                                <span>Rs.{{ $amount}}</span>
                                                 <span class="old-price">Rs.{{ $product->selling_price }}</span>
                                             </div>
                                         @endif
@@ -137,7 +139,7 @@
 
                         @php
                             $catwiseProduct = App\Models\Product::where('category_id', $category->id)
-                                ->orderBy('id', 'DESC')
+                                ->orderBy('id', 'ASC')
                                 ->get();
                         @endphp
 
@@ -149,7 +151,8 @@
                                         <div class="product-img product-img-zoom">
                                             <a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                                <img class="default-img" src="{{ asset($product->product_thambnail) }}"
+                                                <img class="default-img"
+                                                    src="{{ asset($product->product_thambnail) }}"
                                                     alt="" />
 
                                             </a>
@@ -166,10 +169,10 @@
                                         </div>
 
                                         @php
-                                            $amount = $product->selling_price - $product->discount_price;
-                                            $discount = ($amount / $product->selling_price) * 100;
+                                        $amount = $product->selling_price - $product->discount_price;
+                                        $discount = ($product->discount_price/$product->selling_price) * 100;
+                                    @endphp
 
-                                        @endphp
 
 
                                         <div class="product-badges product-badges-position product-badges-mrg">
@@ -213,12 +216,12 @@
 
                                             @if ($product->discount_price == null)
                                                 <div class="product-price">
-                                                    <span>${{ $product->selling_price }}</span>
+                                                    <span>Rs. {{ $product->selling_price }}</span>
 
                                                 </div>
                                             @else
                                                 <div class="product-price">
-                                                    <span>${{ $product->discount_price }}</span>
+                                                    <span>Rs. {{ $amount }}</span>
                                                     <span class="old-price">${{ $product->selling_price }}</span>
                                                 </div>
                                             @endif

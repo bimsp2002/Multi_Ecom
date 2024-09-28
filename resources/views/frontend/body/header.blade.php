@@ -48,7 +48,7 @@
                                     <li>
                                         <a href="#"><img
                                                 src="{{ asset('frontend/assets/imgs/theme/flag-ru.png') }}"
-                                                alt="" />Pусский</a>
+                                                alt="" /></a>
                                     </li>
                                 </ul>
                             </li>
@@ -67,7 +67,7 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href=""><img src="" alt="logo" /></a>
+                    <a href="{{ url('/') }}"><img src="" alt="logo" /></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
@@ -121,7 +121,7 @@
                                     <img class="svgInject" alt="Nest"
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-compare.svg') }}" />
                                 </a>
-                                <a href=""><span class="lable ml-0">Compare</span></a>
+                                <a href="#"><span class="lable ml-0">Compare</span></a>
                             </div>
 
                             <div class="header-action-icon-2">
@@ -130,14 +130,14 @@
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />
                                     <span class="pro-count blue" id="wishQty">0 </span>
                                 </a>
-                                <a href=""><span class="lable">Wishlist</span></a>
+                                <a href="#"><span class="lable">Wishlist</span></a>
                             </div>
 
 
 
 
                             <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="shop-cart.html">
+                                <a class="mini-cart-icon" href="#">
                                     <img alt="Nest"
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />
                                     <span class="pro-count blue" id="cartQty">0</span>
@@ -245,7 +245,7 @@
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}"
+                    <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}"
                             alt="logo" /></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
