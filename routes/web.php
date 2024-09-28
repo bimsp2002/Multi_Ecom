@@ -17,7 +17,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CompareController;
-
+use App\Http\Controllers\Backend\CouponController;
 
 
 /*
@@ -191,6 +191,19 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/banner', 'UpdateBanner')->name('update.banner');
         Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
     });
+
+     // Coupon All Route 
+    Route::controller(CouponController::class)->group(function(){
+        Route::get('/all/coupon' , 'AllCoupon')->name('all.coupon');
+        Route::get('/add/coupon' , 'AddCoupon')->name('add.coupon');
+        Route::post('/store/coupon' , 'StoreCoupon')->name('store.coupon');
+        Route::get('/edit/coupon/{id}' , 'EditCoupon')->name('edit.coupon');
+        Route::post('/update/coupon' , 'UpdateCoupon')->name('update.coupon');
+        Route::get('/delete/coupon/{id}' , 'DeleteCoupon')->name('delete.coupon');
+
+}); 
+
+
 }); //endmiddler 
 
 /// Frontend Product Details All Route 

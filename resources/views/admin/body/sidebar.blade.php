@@ -118,6 +118,24 @@
             </ul>
         </li>
 
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="lni lni-gallery"></i>
+                </div>
+                <div class="menu-title">Coupon Manage</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all.coupon') }}"><i class="bx bx-right-arrow-alt"></i>All Coupon</a>
+                </li>
+
+                <li> <a href="{{ route('add.banner') }}"><i class="bx bx-right-arrow-alt"></i>Add Coupon</a>
+                </li>
+
+
+            </ul>
+        </li>
+
         <li class="menu-label">UI Elements</li>
         <li>
             <a href="javascript:;" class="has-arrow">
