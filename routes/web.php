@@ -14,6 +14,10 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\CartController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -196,7 +200,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
         Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
         Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
-// Product View Modal With Ajax
 
+        // Product View Modal With Ajax
         Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+        /// Add to cart store data
+        Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+        // Get Data from mini Cart
+        Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
+        Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+        /// Add to cart store data For Product Details Page 
+        Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
+
+
 
