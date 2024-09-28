@@ -754,6 +754,10 @@
         // Compare Remove End
     </script>
 
+
+
+
+
     <!--  // Start Load MY Cart // -->
     <script type="text/javascript">
         function cart() {
@@ -763,8 +767,6 @@
                 dataType: 'json',
                 success: function(response) {
                     // console.log(response)
-
-
                     var rows = ""
 
                     $.each(response.carts, function(key, value) {
@@ -774,7 +776,7 @@
             </td>
             <td class="image product-thumbnail pt-40"><img src="/${value.options.image} " alt="#"></td>
             <td class="product-des product-name">
-                <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="shop-product-right.html">${value.name} </a></h6>
+                <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="#">${value.name} </a></h6>
                 
             </td>
             <td class="price" data-title="Price">
@@ -870,6 +872,8 @@
         }
         // Cart Remove End 
 
+
+
         // Cart INCREMENT 
 
         function cartIncrement(rowId) {
@@ -878,7 +882,6 @@
                 url: "/cart-increment/" + rowId,
                 dataType: 'json',
                 success: function(data) {
-                    couponCalculation();
                     cart();
                     miniCart();
 
@@ -897,7 +900,6 @@
                 url: "/cart-decrement/" + rowId,
                 dataType: 'json',
                 success: function(data) {
-                    couponCalculation();
                     cart();
                     miniCart();
 

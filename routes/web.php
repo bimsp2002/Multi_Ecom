@@ -32,7 +32,7 @@ use App\Http\Controllers\User\CompareController;
 */
 
 //Route::get('/', function () {
- //   return view('frontend.index'); 
+//   return view('frontend.index'); 
 // });
 
 
@@ -191,50 +191,55 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/banner', 'UpdateBanner')->name('update.banner');
         Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
     });
-
-
 }); //endmiddler 
 
 /// Frontend Product Details All Route 
 
-        Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
-        Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
-        Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
-        Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
-        Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
+Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
+Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
+Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
 
-        // Product View Modal With Ajax
-        Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
-        /// Add to cart store data
-        Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
-        // Get Data from mini Cart
-        Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
-        Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
-        /// Add to cart store data For Product Details Page 
-        Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
-        /// Add to Wishlist 
-        Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
-        /// Add to Compare 
-        Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
+// Product View Modal With Ajax
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+/// Add to cart store data
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+// Get Data from mini Cart
+Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
+Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+/// Add to cart store data For Product Details Page 
+Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
+/// Add to Wishlist 
+Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToWishList']);
+/// Add to Compare 
+Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
 
-    Route::middleware(['auth','role:user'])->group(function() {
+Route::middleware(['auth', 'role:user'])->group(function () {
 
-            // Wishlist All Route 
-            Route::controller(WishlistController::class)->group(function(){
-                Route::get('/wishlist' , 'AllWishlist')->name('wishlist');
-                Route::get('/get-wishlist-product' , 'GetWishlistProduct');
-                Route::get('/wishlist-remove/{id}' , 'WishlistRemove'); 
-           }); 
+    // Wishlist All Route 
+    Route::controller(WishlistController::class)->group(function () {
+        Route::get('/wishlist', 'AllWishlist')->name('wishlist');
+        Route::get('/get-wishlist-product', 'GetWishlistProduct');
+        Route::get('/wishlist-remove/{id}', 'WishlistRemove');
+    });
 
-            // Compare All Route 
-            Route::controller(CompareController::class)->group(function(){
-                Route::get('/compare' , 'AllCompare')->name('compare');
-                Route::get('/get-compare-product' , 'GetCompareProduct');
-                Route::get('/compare-remove/{id}' , 'CompareRemove'); 
+    // Compare All Route 
+    Route::controller(CompareController::class)->group(function () {
+        Route::get('/compare', 'AllCompare')->name('compare');
+        Route::get('/get-compare-product', 'GetCompareProduct');
+        Route::get('/compare-remove/{id}', 'CompareRemove');
+    });
+
+     // Cart All Route 
+    Route::controller(CartController::class)->group(function(){
+        Route::get('/mycart' , 'MyCart')->name('mycart');
+        Route::get('/get-cart-product' , 'GetCartProduct');
+        Route::get('/cart-remove/{rowId}' , 'CartRemove');
+
+        Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
+       Route::get('/cart-increment/{rowId}' , 'CartIncrement');
+    
 
 }); 
-
-
-        });
-           
-
+});
