@@ -420,6 +420,9 @@
         /// Mini Cart Remove End 
     </script>
 
+
+
+
     <!--  /// Start Wishlist Add -->
     <script type="text/javascript">
         function addToWishList(product_id) {
@@ -488,7 +491,7 @@
                         </td>
                         <td class="image product-thumbnail pt-40"><img src="/${value.product.product_thambnail}" alt="#" /></td>
                         <td class="product-des product-name">
-                            <h6><a class="product-name mb-10" href="shop-product-right.html">${value.product.product_name} </a></h6>
+                            <h6><a class="product-name mb-10" href="#">${value.product.product_name} </a></h6>
                             <div class="product-rate-cover">
                                 <div class="product-rate d-inline-block">
                                     <div class="product-rating" style="width: 90%"></div>
@@ -499,7 +502,7 @@
                         <td class="price" data-title="Price">
                         ${value.product.discount_price == null
                         ? `<h3 class="text-brand">$${value.product.selling_price}</h3>`
-                        :`<h3 class="text-brand">$${value.product.discount_price}</h3>`
+                        :`<h3 class="text-brand">$${value.product.selling_price-value.product.discount_price}</h3>`
 
                         }
                             
@@ -526,7 +529,6 @@
                 }
             })
         }
-
         wishlist();
 
         // / End Load Wishlist Data -->
