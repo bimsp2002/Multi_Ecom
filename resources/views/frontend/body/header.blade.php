@@ -117,11 +117,10 @@
                             </div>
 
                             <div class="header-action-icon-2">
-                                <a href="">
-                                    <img class="svgInject" alt="Nest"
-                                        src="{{ asset('frontend/assets/imgs/theme/icons/icon-compare.svg') }}" />
+                                <a href="{{ route('compare') }}">
+                                    <img class="svgInject" alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-compare.svg')}}" />
                                 </a>
-                                <a href="#"><span class="lable ml-0">Compare</span></a>
+                                <a href="{{ route('compare') }}"><span class="lable ml-0">Compare</span></a>
                             </div>
 
                             <div class="header-action-icon-2">

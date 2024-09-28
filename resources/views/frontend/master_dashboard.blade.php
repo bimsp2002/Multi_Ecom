@@ -644,7 +644,7 @@
 
                         rows += ` <tr class="pr_image">
                                     <td class="text-muted font-sm fw-600 font-heading mw-200">Preview</td>
-    <td class="row_img"><img src="/${value.product.product_thambnail} " style="width:300px; height:300px;"  alt="compare-img" /></td>
+    <td class="row_img"><img src="/${value.product.product_thambnail} " style="width:100px; height:100px;"  alt="compare-img" /></td>
                                     
                                 </tr>
                                 <tr class="pr_title">
@@ -659,7 +659,7 @@
                                     <td class="product_price">
                       ${value.product.discount_price == null
                         ? `<h4 class="price text-brand">$${value.product.selling_price}</h4>`
-                        :`<h4 class="price text-brand">$${value.product.discount_price}</h4>`
+                        :`<h4 class="price text-brand">$${value.product.selling_price-value.product.discount_price}</h4>`
 
                         } 
                                     </td>
