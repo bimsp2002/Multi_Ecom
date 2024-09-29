@@ -22,6 +22,7 @@ use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\VendorOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,7 +103,23 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/delete/product/{id}', 'VendorProductDelete')->name('vendor.delete.product');
         Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
     });
+
+     // Vendor Order All Route 
+Route::controller(VendorOrderController::class)->group(function(){
+    Route::get('/vendor/order' , 'VendorOrder')->name('vendor.order');
+
+   // Route::get('/vendor/return/order' , 'VendorReturnOrder')->name('vendor.return.order');
+
+   // Route::get('/vendor/complete/return/order' , 'VendorCompleteReturnOrder')->name('vendor.complete.return.order');
+   // Route::get('/vendor/order/details/{order_id}' , 'VendorOrderDetails')->name('vendor.order.details');
+    
+ 
 });
+
+
+
+
+}); //end vendor middlser
 
 
 
