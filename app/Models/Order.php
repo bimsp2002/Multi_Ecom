@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ShipState extends Model
+class Order extends Model
 {
     use HasFactory;
     protected $guarded = [];
@@ -17,4 +17,14 @@ class ShipState extends Model
      public function district(){
         return $this->belongsTo(ShipDistricts::class,'district_id','id');
     }
-}
+
+     public function state(){
+        return $this->belongsTo(ShipState::class,'state_id','id');
+    }
+     public function user(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+ 
+
+
+} 

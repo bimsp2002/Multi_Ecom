@@ -6,13 +6,13 @@
 <div class="page-content"> 
 				<!--breadcrumb-->
 				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-					<div class="breadcrumb-title pe-3">Add Division </div>
+					<div class="breadcrumb-title pe-3">Edit Local Body </div>
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">Add Division </li>
+								<li class="breadcrumb-item active" aria-current="page">Edit Local Body </li>
 							</ol>
 						</nav>
 					</div>
@@ -29,18 +29,56 @@
 	<div class="card">
 		<div class="card-body">
 
- <form id="myForm" method="post" action="{{ route('store.division') }}"   >
+ <form id="myForm" method="post" action="{{ route('update.state') }}"   >
 			@csrf
+
+			<input type="hidden" name="id" value="{{ $state->id }}">
 		 
-			 
-			   <div class="row mb-3">
+			<div class="row mb-3">
 				<div class="col-sm-3">
-					<h6 class="mb-0">Division Name</h6>
+					<h6 class="mb-0">Province Name</h6>
 				</div>
 				<div class="form-group col-sm-9 text-secondary">
-					<input type="text" name="division_name" class="form-control"   />
+	 	<select name="division_id" class="form-select mb-3" aria-label="Default select example">
+			 <option selected="">Open this select menu</option>
+
+			 @foreach($division as $item)
+		 	<option value="{{ $item->id }}" {{ $item->id == $state->division_id ? 'selected' : ''  }}>{{ $item->division_name }}</option>
+		 	@endforeach
+		 
+								</select>
 				</div>
-			</div> 
+			</div>
+
+
+
+<div class="row mb-3">
+				<div class="col-sm-3">
+					<h6 class="mb-0">District Name</h6>
+				</div>
+				<div class="form-group col-sm-9 text-secondary">
+	 	<select name="district_id" class="form-select mb-3" aria-label="Default select example">
+			 <option selected="">Open this select menu</option>
+
+			 @foreach($district as $item)
+		 	<option value="{{ $item->id }}" {{ $item->id == $state->district_id ? 'selected' : ''  }}>{{ $item->district_name }}</option>
+		 	@endforeach
+		 
+								</select>
+				</div>
+			</div>
+		 
+ 
+           <div class="row mb-3">
+				<div class="col-sm-3">
+					<h6 class="mb-0">State Name</h6>
+				</div>
+				<div class="form-group col-sm-9 text-secondary">
+					<input type="text" name="state_name" class="form-control"  value="{{ $state->state_name }}" />
+				</div>
+			</div>
+			  
+
 
 
 			<div class="row">
@@ -73,15 +111,14 @@
     $(document).ready(function (){
         $('#myForm').validate({
             rules: {
-                division_name: {
+                state_name: {
                     required : true,
-                },
-                  
+                }, 
             },
             messages :{
-                division_name: {
-                    required : 'Please Enter Division Name',
-                }, 
+                state_name: {
+                    required : 'Please Enter State Name',
+                },
             },
             errorElement : 'span', 
             errorPlacement: function (error,element) {
@@ -100,7 +137,7 @@
 </script>
 
 
-
+ 
  
 
 

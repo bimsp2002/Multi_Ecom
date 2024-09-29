@@ -501,8 +501,8 @@
                         </td>
                         <td class="price" data-title="Price">
                         ${value.product.discount_price == null
-                        ? `<h3 class="text-brand">$${value.product.selling_price}</h3>`
-                        :`<h3 class="text-brand">$${value.product.selling_price-value.product.discount_price}</h3>`
+                        ? `<h3 class="text-brand">Rs. ${value.product.selling_price}</h3>`
+                        :`<h3 class="text-brand">Rs. ${value.product.selling_price-value.product.discount_price}</h3>`
 
                         }
                             
@@ -658,8 +658,8 @@
                                     <td class="text-muted font-sm fw-600 font-heading">Price</td>
                                     <td class="product_price">
                       ${value.product.discount_price == null
-                        ? `<h4 class="price text-brand">$${value.product.selling_price}</h4>`
-                        :`<h4 class="price text-brand">$${value.product.selling_price-value.product.discount_price}</h4>`
+                        ? `<h4 class="price text-brand">Rs. ${value.product.selling_price}</h4>`
+                        :`<h4 class="price text-brand">Rs. ${value.product.selling_price-value.product.discount_price}</h4>`
 
                         } 
                                     </td>
@@ -780,7 +780,7 @@
                 
             </td>
             <td class="price" data-title="Price">
-                <h4 class="text-body">$${value.price} </h4>
+                <h4 class="text-body">Rs. ${value.price} </h4>
             </td>
 
               <td class="price" data-title="Price">
@@ -812,7 +812,7 @@
                 </div>
             </td>
             <td class="price" data-title="Price">
-                <h4 class="text-brand">$${value.subtotal} </h4>
+                <h4 class="text-brand">Rs. ${value.subtotal} </h4>
             </td>
             <td class="action text-center" data-title="Remove">
             <a type="submit" class="text-body"  id="${value.rowId}" onclick="cartRemove(this.id)"><i class="fi-rs-trash"></i></a></td>
@@ -882,6 +882,7 @@
                 url: "/cart-increment/" + rowId,
                 dataType: 'json',
                 success: function(data) {
+                    couponCalculation()
                     cart();
                     miniCart();
 
@@ -900,6 +901,7 @@
                 url: "/cart-decrement/" + rowId,
                 dataType: 'json',
                 success: function(data) {
+                    couponCalculation()
                     cart();
                     miniCart();
 
@@ -911,6 +913,10 @@
         // Cart Decrement End 
     </script>
     <!--  // End Load MY Cart // -->
+
+
+
+
 
     <!--  ////////////// Start Apply Coupon ////////////// -->
     <script type="text/javascript">
@@ -966,6 +972,8 @@
             })
         }
 
+
+
         // Start CouponCalculation Method   
         function couponCalculation() {
             $.ajax({
@@ -980,7 +988,7 @@
                         <h6 class="text-muted">Subtotal</h6>
                     </td>
                     <td class="cart_total_amount">
-                        <h4 class="text-brand text-end">$${data.total}</h4>
+                        <h4 class="text-brand text-end">Rs. ${data.total}</h4>
                     </td>
                 </tr>
                  
@@ -989,7 +997,7 @@
                         <h6 class="text-muted">Grand Total</h6>
                     </td>
                     <td class="cart_total_amount">
-                        <h4 class="text-brand text-end">$${data.total}</h4>
+                        <h4 class="text-brand text-end">Rs. ${data.total}</h4>
                     </td>
                 </tr>
                 `)
@@ -1000,7 +1008,7 @@
                         <h6 class="text-muted">Subtotal</h6>
                     </td>
                     <td class="cart_total_amount">
-                        <h4 class="text-brand text-end">$${data.subtotal}</h4>
+                        <h4 class="text-brand text-end">Rs. ${data.subtotal}</h4>
                     </td>
                 </tr>
                  
@@ -1018,7 +1026,7 @@
                         <h6 class="text-muted">Discount Amount  </h6>
                     </td>
                     <td class="cart_total_amount">
-    <h4 class="text-brand text-end">$${data.discount_amount}</h4>
+    <h4 class="text-brand text-end">Rs. ${data.discount_amount}</h4>
                     </td>
                 </tr>
 
@@ -1028,7 +1036,7 @@
                         <h6 class="text-muted">Grand Total </h6>
                     </td>
                     <td class="cart_total_amount">
-          <h4 class="text-brand text-end">$${data.total_amount}</h4>
+          <h4 class="text-brand text-end">Rs. ${data.total_amount}</h4>
                     </td>
                 </tr> `
                         )

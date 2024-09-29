@@ -19,8 +19,9 @@ use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
-
-
+use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\Backend\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -194,29 +195,65 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
     });
 
-     // Coupon All Route 
-    Route::controller(CouponController::class)->group(function(){
-        Route::get('/all/coupon' , 'AllCoupon')->name('all.coupon');
-        Route::get('/add/coupon' , 'AddCoupon')->name('add.coupon');
-        Route::post('/store/coupon' , 'StoreCoupon')->name('store.coupon');
-        Route::get('/edit/coupon/{id}' , 'EditCoupon')->name('edit.coupon');
-        Route::post('/update/coupon' , 'UpdateCoupon')->name('update.coupon');
-        Route::get('/delete/coupon/{id}' , 'DeleteCoupon')->name('delete.coupon');
+    // Coupon All Route 
+    Route::controller(CouponController::class)->group(function () {
+        Route::get('/all/coupon', 'AllCoupon')->name('all.coupon');
+        Route::get('/add/coupon', 'AddCoupon')->name('add.coupon');
+        Route::post('/store/coupon', 'StoreCoupon')->name('store.coupon');
+        Route::get('/edit/coupon/{id}', 'EditCoupon')->name('edit.coupon');
+        Route::post('/update/coupon', 'UpdateCoupon')->name('update.coupon');
+        Route::get('/delete/coupon/{id}', 'DeleteCoupon')->name('delete.coupon');
+    });
+    // Shipping Division All Route 
+    // Shipping Division All Route 
+    Route::controller(ShippingAreaController::class)->group(function () {
+        Route::get('/all/division', 'AllDivision')->name('all.division');
+        Route::get('/add/division', 'AddDivision')->name('add.division');
+        Route::post('/store/division', 'StoreDivision')->name('store.division');
+        Route::get('/edit/division/{id}', 'EditDivision')->name('edit.division');
+        Route::post('/update/division', 'UpdateDivision')->name('update.division');
+        Route::get('/delete/division/{id}', 'DeleteDivision')->name('delete.division');
+    });
 
-    }); 
-     // Shipping Division All Route 
-    Route::controller(ShippingAreaController::class)->group(function(){
-       Route::get('/all/division' , 'AllDivision')->name('all.division');
-       Route::get('/add/division' , 'AddDivision')->name('add.division');
-       Route::post('/store/division' , 'StoreDivision')->name('store.division');
-       //Route::get('/edit/division/{id}' , 'EditDivision')->name('edit.division');
-       //Route::post('/update/division' , 'UpdateDivision')->name('update.division');
-      // Route::get('/delete/division/{id}' , 'DeleteDivision')->name('delete.division');
+    // Shipping District All Route 
+    Route::controller(ShippingAreaController::class)->group(function () {
+        Route::get('/all/district', 'AllDistrict')->name('all.district');
+        Route::get('/add/district', 'AddDistrict')->name('add.district');
+        Route::post('/store/district', 'StoreDistrict')->name('store.district');
+        Route::get('/edit/district/{id}', 'EditDistrict')->name('edit.district');
+        Route::post('/update/district', 'UpdateDistrict')->name('update.district');
+        Route::get('/delete/district/{id}', 'DeleteDistrict')->name('delete.district');
+    });
 
-}); 
+    // Shipping State All Route 
+    Route::controller(ShippingAreaController::class)->group(function () {
+        Route::get('/all/state', 'AllState')->name('all.state');
+        Route::get('/add/state', 'AddState')->name('add.state');
+        Route::post('/store/state', 'StoreState')->name('store.state');
+        Route::get('/edit/state/{id}', 'EditState')->name('edit.state');
+        Route::post('/update/state', 'UpdateState')->name('update.state');
+        Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
+        Route::get('/district/ajax/{division_id}', 'GetDistrict');
+    });
+    // Admin Order All Route 
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/pending/order', 'PendingOrder')->name('pending.order');
+        //Route::get('/admin/order/details/{order_id}' , 'AdminOrderDetails')->name('admin.order.details');
 
+        //Route::get('/admin/confirmed/order' , 'AdminConfirmedOrder')->name('admin.confirmed.order');
 
+        //Route::get('/admin/processing/order' , 'AdminProcessingOrder')->name('admin.processing.order');
 
+        //Route::get('/admin/delivered/order' , 'AdminDeliveredOrder')->name('admin.delivered.order');
+
+        //Route::get('/pending/confirm/{order_id}' , 'PendingToConfirm')->name('pending-confirm');
+        //Route::get('/confirm/processing/{order_id}' , 'ConfirmToProcess')->name('confirm-processing');
+
+        // Route::get('/processing/delivered/{order_id}' , 'ProcessToDelivered')->name('processing-delivered');
+
+        // Route::get('/admin/invoice/download/{order_id}' , 'AdminInvoiceDownload')->name('admin.invoice.download');
+
+    });
 }); //endmiddler 
 
 /// Frontend Product Details All Route 
@@ -241,6 +278,26 @@ Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'AddToW
 /// Add to Compare 
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'AddToCompare']);
 
+/// Frontend Coupon Option
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
+
+// Checkout Page Route 
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+
+// Cart All Route 
+Route::controller(CartController::class)->group(function () {
+    Route::get('/mycart', 'MyCart')->name('mycart');
+    Route::get('/get-cart-product', 'GetCartProduct');
+    Route::get('/cart-remove/{rowId}', 'CartRemove');
+
+    Route::get('/cart-decrement/{rowId}', 'CartDecrement');
+    Route::get('/cart-increment/{rowId}', 'CartIncrement');
+});
+
+
+
 Route::middleware(['auth', 'role:user'])->group(function () {
 
     // Wishlist All Route 
@@ -257,15 +314,18 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/compare-remove/{id}', 'CompareRemove');
     });
 
-     // Cart All Route 
-    Route::controller(CartController::class)->group(function(){
-        Route::get('/mycart' , 'MyCart')->name('mycart');
-        Route::get('/get-cart-product' , 'GetCartProduct');
-        Route::get('/cart-remove/{rowId}' , 'CartRemove');
 
-        Route::get('/cart-decrement/{rowId}' , 'CartDecrement');
-       Route::get('/cart-increment/{rowId}' , 'CartIncrement');
-    
+    // Checkout All Route 
+    Route::controller(CheckoutController::class)->group(function () {
+        Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
+        Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
+        Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
+    });
 
-}); 
+
+    // Stripe All Route 
+    Route::controller(StripeController::class)->group(function () {
+        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+        Route::post('/cash/order', 'CashOrder')->name('cash.order');
+    });
 });

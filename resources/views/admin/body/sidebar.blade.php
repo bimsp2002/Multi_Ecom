@@ -144,19 +144,17 @@
                 <div class="menu-title">Shipping  Area</div>
             </a>
             <ul>
-                <li> <a href="{{ route('all.division') }}"><i class="bx bx-right-arrow-alt"></i>All Division</a>
+                <li> <a href="{{ route('all.division') }}"><i class="bx bx-right-arrow-alt"></i>All Province</a>
                 </li>
 
-                <li> <a href="{{ route('add.division') }}"><i class="bx bx-right-arrow-alt"></i>All District</a>
+                <li> <a href="{{ route('all.district') }}"><i class="bx bx-right-arrow-alt"></i>All District</a>
                 </li>
-                <li> <a href="{{ route('add.banner') }}"><i class="bx bx-right-arrow-alt"></i>All State</a>
+                <li> <a href="{{ route('all.state') }}"><i class="bx bx-right-arrow-alt"></i>All Local Body</a>
                 </li>
-
-
             </ul>
         </li>
 
-        <li class="menu-label">UI Elements</li>
+        <li class="menu-label"></li>
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='lni lni-network'></i>
@@ -171,8 +169,6 @@
 
             </ul>
         </li>
-
-
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-cart'></i>
@@ -180,7 +176,7 @@
                 <div class="menu-title">Order Manage </div>
             </a>
             <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Pending Order</a>
+                <li> <a href="{{ route('pending.order')}}"><i class="bx bx-right-arrow-alt"></i>Pending Order</a>
                 </li>
                 <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Confirmed Order</a>
                 </li>
@@ -188,9 +184,6 @@
                 </li>
                 <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Delivered Order</a>
                 </li>
-
-
-
             </ul>
         </li>
 
