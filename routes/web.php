@@ -23,7 +23,7 @@ use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\VendorOrderController;
-
+use App\Http\Controllers\User\AllUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +46,10 @@ Route::get('/', [IndexController::class, 'Index']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
+    Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
+    Route::post('/user/update/password', [UserController::class, 'UserUpdatePassword'])->name('user.update.password');
+
+
 }); // Gorup Milldeware End
 
 
@@ -345,4 +349,27 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
         Route::post('/cash/order', 'CashOrder')->name('cash.order');
     });
+
+     // User Dashboard All Route 
+Route::controller(AllUserController::class)->group(function(){
+    Route::get('/user/account/page' , 'UserAccount')->name('user.account.page');
+    Route::get('/user/change/password' , 'UserChangePassword')->name('user.change.password');
+   
+   Route::get('/user/order/page' , 'UserOrderPage')->name('user.order.page');
+   
+   Route::get('/user/order_details/{order_id}' , 'UserOrderDetails');
+   // Route::get('/user/invoice_download/{order_id}' , 'UserOrderInvoice');  
+   
+   // Route::post('/return/order/{order_id}' , 'ReturnOrder')->name('return.order');
+   
+    //Route::get('/return/order/page' , 'ReturnOrderPage')->name('return.order.page');
+   
+     // Order Tracking 
+     //Route::get('/user/track/order' , 'UserTrackOrder')->name('user.track.order');
+    // Route::post('/order/tracking' , 'OrderTracking')->name('order.tracking');
+   
+   
+   }); 
+
+
 });
