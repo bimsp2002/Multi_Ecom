@@ -21,6 +21,13 @@ class Role
     public function handle(Request $request, Closure $next, $role)
     {
 
+        if (Auth::check()) {
+           $expireTime = Carbon::now()->addSeconds(30);
+           Cache::put('user-is-online' . Auth::user()->id, true,$expireTime);
+           User::where('id',Auth::user()->id)->update(['last_seen' => Carbon::now()]);
+        }
+
+
 
         if ($request->user()->role !== $role) {
            return redirect('dashboard');

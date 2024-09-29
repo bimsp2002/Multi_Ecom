@@ -213,7 +213,7 @@
                 <li> <a href="{{ route('report.view')}}"><i class="bx bx-right-arrow-alt"></i>Report View</a>
                 </li>
 
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Order By User</a>
+                <li> <a href="{{ route('order.by.user') }}"><i class="bx bx-right-arrow-alt"></i>Order By User</a>
                 </li>
 
 
@@ -228,10 +228,10 @@
                 <div class="menu-title">User Manage</div>
             </a>
             <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All User</a>
+                <li> <a href="{{ route('all-user') }}"><i class="bx bx-right-arrow-alt"></i>All User</a>
                 </li>
 
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Vendor</a>
+                <li> <a href="{{ route('all-vendor') }}"><i class="bx bx-right-arrow-alt"></i>All Vendor</a>
                 </li>
 
 
