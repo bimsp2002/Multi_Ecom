@@ -9,7 +9,7 @@
             <div class="container">
                 <div class="breadcrumb">
                     <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                    <span></span> My Account
+                    <span></span> Return Order Page
                 </div>
             </div>
         </div>
@@ -39,11 +39,12 @@
                 <table class="table" style="background:#ddd;font-weight: 600;" >
                     <thead>
                         <tr>
-                            <th>Sl</th>
+                            <th>SN</th>
                             <th>Date</th>
-                            <th>Total</th>
+                            <th>Totaly</th>
                             <th>Payment</th>
                             <th>Invoice</th>
+                            <th>Reason</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -53,21 +54,20 @@
         <tr>
             <td>{{ $key+1 }}</td>
             <td> {{ $order->order_date }}</td>
-           <td> Rs. {{ $order->amount }}</td>
+           <td> Rs.{{ $order->amount }}</td>
             <td> {{ $order->payment_method }}</td>
             <td> {{ $order->invoice_no }}</td>
+            <td> {{ $order->return_reason }}</td>
             <td> 
-@if($order->status == 'pending')
-<span class="badge rounded-pill bg-warning">Pending</span>
-@elseif($order->status == 'confirm')
-<span class="badge rounded-pill bg-info">Confirm</span>
-@elseif($order->status == 'processing')
-<span class="badge rounded-pill bg-dark">Processing</span>
-@elseif($order->status == 'deliverd')
-<span class="badge rounded-pill bg-success">Deliverd</span>
-@if($order->return_order == 1)
-<span class="badge rounded-pill " style="background:red;">Return</span>
-@endif
+@if($order->return_order == 0)
+<span class="badge rounded-pill bg-warning">No Retrun Request</span>
+
+@elseif($order->return_order == 1)
+<span class="badge rounded-pill bg-danger">Pedding</span>
+
+@elseif($order->return_order == 2)
+<span class="badge rounded-pill bg-success">Success</span> 
+ 
 
 @endif
 

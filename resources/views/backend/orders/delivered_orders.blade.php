@@ -4,13 +4,13 @@
 <div class="page-content">
 				<!--breadcrumb-->
 				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-					<div class="breadcrumb-title pe-3">All Pending Order</div>
-					<div class="ps-3">
+					<div class="breadcrumb-title pe-3">All Delivered Order</div>
+					<div class="ps-3"> 
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">All Pending Order</li>
+								<li class="breadcrumb-item active" aria-current="page">All Delivered Order</li>
 							</ol>
 						</nav>
 					</div>
@@ -29,7 +29,7 @@
 							<table id="example" class="table table-striped table-bordered" style="width:100%">
 								<thead>
 			<tr>
-				<th>SN</th>
+				<th>Sl</th>
 				<th>Date </th>
 				<th>Invoice </th>
 				<th>Amount </th>
@@ -49,10 +49,9 @@
                 <td> <span class="badge rounded-pill bg-success"> {{ $item->status }}</span></td> 
 				
 				<td>
-<a href="{{ route('admin.order.details',$item->id) }}" class="btn btn-info" title="Details"><i class="fa fa-eye"></i> </a>
+					<a href="{{ route('admin.order.details',$item->id) }}" class="btn btn-info" title="Details"><i class="fa fa-eye"></i> </a>
  
-
-				</td> 
+					<a href="{{ route('admin.invoice.download',$item->id) }}" class="btn btn-danger" title="Invoice Pdf"><i class="fa fa-download"></i> </a>				</td> 
 			</tr>
 			@endforeach
 			 
@@ -60,7 +59,7 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<th>Sl</th>
+				<th>SN</th>
 				<th>Date </th>
 				<th>Invoice </th>
 				<th>Amount </th>
