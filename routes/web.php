@@ -9,6 +9,8 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SliderController;
@@ -48,8 +50,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
     Route::post('/user/update/password', [UserController::class, 'UserUpdatePassword'])->name('user.update.password');
-
-
 }); // Gorup Milldeware End
 
 
@@ -108,21 +108,13 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
     });
 
-     // Vendor Order All Route 
-Route::controller(VendorOrderController::class)->group(function(){
-    Route::get('/vendor/order' , 'VendorOrder')->name('vendor.order');
-
-   // Route::get('/vendor/return/order' , 'VendorReturnOrder')->name('vendor.return.order');
-
-   // Route::get('/vendor/complete/return/order' , 'VendorCompleteReturnOrder')->name('vendor.complete.return.order');
-   // Route::get('/vendor/order/details/{order_id}' , 'VendorOrderDetails')->name('vendor.order.details');
-    
- 
-});
-
-
-
-
+    // Vendor Order All Route 
+    Route::controller(VendorOrderController::class)->group(function () {
+        Route::get('/vendor/order', 'VendorOrder')->name('vendor.order');
+        Route::get('/vendor/return/order', 'VendorReturnOrder')->name('vendor.return.order');
+        Route::get('/vendor/complete/return/order', 'VendorCompleteReturnOrder')->name('vendor.complete.return.order');
+        Route::get('/vendor/order/details/{order_id}', 'VendorOrderDetails')->name('vendor.order.details');
+    });
 }); //end vendor middlser
 
 
@@ -259,22 +251,44 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     // Admin Order All Route 
     Route::controller(OrderController::class)->group(function () {
         Route::get('/pending/order', 'PendingOrder')->name('pending.order');
-        Route::get('/admin/order/details/{order_id}' , 'AdminOrderDetails')->name('admin.order.details');
+        Route::get('/admin/order/details/{order_id}', 'AdminOrderDetails')->name('admin.order.details');
 
-        Route::get('/admin/confirmed/order' , 'AdminConfirmedOrder')->name('admin.confirmed.order');
+        Route::get('/admin/confirmed/order', 'AdminConfirmedOrder')->name('admin.confirmed.order');
 
-        Route::get('/admin/processing/order' , 'AdminProcessingOrder')->name('admin.processing.order');
+        Route::get('/admin/processing/order', 'AdminProcessingOrder')->name('admin.processing.order');
 
-        Route::get('/admin/delivered/order' , 'AdminDeliveredOrder')->name('admin.delivered.order');
+        Route::get('/admin/delivered/order', 'AdminDeliveredOrder')->name('admin.delivered.order');
 
-        Route::get('/pending/confirm/{order_id}' , 'PendingToConfirm')->name('pending-confirm');
-        Route::get('/confirm/processing/{order_id}' , 'ConfirmToProcess')->name('confirm-processing');
+        Route::get('/pending/confirm/{order_id}', 'PendingToConfirm')->name('pending-confirm');
+        Route::get('/confirm/processing/{order_id}', 'ConfirmToProcess')->name('confirm-processing');
 
-        Route::get('/processing/delivered/{order_id}' , 'ProcessToDelivered')->name('processing-delivered');
+        Route::get('/processing/delivered/{order_id}', 'ProcessToDelivered')->name('processing-delivered');
 
-        Route::get('/admin/invoice/download/{order_id}' , 'AdminInvoiceDownload')->name('admin.invoice.download');
-
+        Route::get('/admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
     });
+
+    // Return Order All Route 
+    Route::controller(ReturnController::class)->group(function () {
+        Route::get('/return/request', 'ReturnRequest')->name('return.request');
+        Route::get('/return/request/approved/{order_id}', 'ReturnRequestApproved')->name('return.request.approved');
+        Route::get('/complete/return/request', 'CompleteReturnRequest')->name('complete.return.request');
+    });
+
+
+ // Report All Route 
+ Route::controller(ReportController::class)->group(function(){
+
+    Route::get('/report/view' , 'ReportView')->name('report.view');
+   // Route::post('/search/by/date' , 'SearchByDate')->name('search-by-date');
+   // Route::post('/search/by/month' , 'SearchByMonth')->name('search-by-month');
+   // Route::post('/search/by/year' , 'SearchByYear')->name('search-by-year');
+
+    //Route::get('/order/by/user' , 'OrderByUser')->name('order.by.user');
+    //Route::post('/search/by/user' , 'SearchByUser')->name('search-by-user');
+ 
+});
+
+
 }); //endmiddler 
 
 /// Frontend Product Details All Route 
@@ -350,26 +364,22 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::post('/cash/order', 'CashOrder')->name('cash.order');
     });
 
-     // User Dashboard All Route 
-Route::controller(AllUserController::class)->group(function(){
-    Route::get('/user/account/page' , 'UserAccount')->name('user.account.page');
-    Route::get('/user/change/password' , 'UserChangePassword')->name('user.change.password');
-   
-   Route::get('/user/order/page' , 'UserOrderPage')->name('user.order.page');
-   
-   Route::get('/user/order_details/{order_id}' , 'UserOrderDetails');
-   Route::get('/user/invoice_download/{order_id}' , 'UserOrderInvoice');  
-   
-   Route::post('/return/order/{order_id}' , 'ReturnOrder')->name('return.order');
-   
-    Route::get('/return/order/page' , 'ReturnOrderPage')->name('return.order.page');
-   
-     // Order Tracking 
-     //Route::get('/user/track/order' , 'UserTrackOrder')->name('user.track.order');
-    // Route::post('/order/tracking' , 'OrderTracking')->name('order.tracking');
-   
-   
-   }); 
+    // User Dashboard All Route 
+    Route::controller(AllUserController::class)->group(function () {
+        Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
+        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
 
+        Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
 
+        Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
+        Route::get('/user/invoice_download/{order_id}', 'UserOrderInvoice');
+
+        Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
+
+        Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
+
+        // Order Tracking 
+        //Route::get('/user/track/order' , 'UserTrackOrder')->name('user.track.order');
+        // Route::post('/order/tracking' , 'OrderTracking')->name('order.tracking');
+    });
 });

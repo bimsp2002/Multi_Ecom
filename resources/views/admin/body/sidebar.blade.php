@@ -154,7 +154,9 @@
             </ul>
         </li>
 
-        <li class="menu-label"></li>
+        <li class="menu-label">
+
+        </li>
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='lni lni-network'></i>
@@ -187,8 +189,6 @@
 
             </ul>
         </li>
-
-
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='lni lni-paperclip'></i>
@@ -196,9 +196,9 @@
                 <div class="menu-title">Return Order </div>
             </a>
             <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Return Request</a>
+                <li> <a href="{{ route('return.request')}}"><i class="bx bx-right-arrow-alt"></i>Return Request</a>
                 </li>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Complete Request</a>
+                <li> <a href="{{ route('complete.return.request')}}"><i class="bx bx-right-arrow-alt"></i>Complete Request</a>
                 </li>
             </ul>
         </li>
@@ -210,7 +210,7 @@
                 <div class="menu-title">Reports Manage</div>
             </a>
             <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Report View</a>
+                <li> <a href="{{ route('report.view')}}"><i class="bx bx-right-arrow-alt"></i>Report View</a>
                 </li>
 
                 <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Order By User</a>
