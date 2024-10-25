@@ -5,29 +5,35 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
+
+
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\BlogController;
-
 use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\ActiveUserController;
-use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\VendorOrderController;
+
+
+use App\Http\Middleware\RedirectIfAuthenticated;
+
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
+
+use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\CompareController;
-use App\Http\Controllers\Backend\CouponController;
-use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
-use App\Http\Controllers\Backend\OrderController;
-use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
 /*
 |--------------------------------------------------------------------------
@@ -317,10 +323,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::get('/admin/add/blog/post', 'AddBlogPost')->name('add.blog.post');
 
-       Route::post('/admin/store/blog/post', 'StoreBlogPost')->name('store.blog.post');
+        Route::post('/admin/store/blog/post', 'StoreBlogPost')->name('store.blog.post');
         Route::get('/admin/edit/blog/post/{id}', 'EditBlogPost')->name('edit.blog.post');
 
-       Route::post('/admin/update/blog/post', 'UpdateBlogPost')->name('update.blog.post');
+        Route::post('/admin/update/blog/post', 'UpdateBlogPost')->name('update.blog.post');
 
         Route::get('/admin/delete/blog/post/{id}', 'DeleteBlogPost')->name('delete.blog.post');
     });
@@ -368,13 +374,20 @@ Route::controller(CartController::class)->group(function () {
 
 
 // Frontend Blog Post All Route 
-Route::controller(BlogController::class)->group(function(){
+Route::controller(BlogController::class)->group(function () {
 
-    Route::get('/blog' , 'AllBlog')->name('home.blog');  
-    Route::get('/post/details/{id}/{slug}' , 'BlogDetails'); 
-     Route::get('/post/category/{id}/{slug}' , 'BlogPostCategory');  
-    
-   });
+    Route::get('/blog', 'AllBlog')->name('home.blog');
+    Route::get('/post/details/{id}/{slug}', 'BlogDetails');
+    Route::get('/post/category/{id}/{slug}', 'BlogPostCategory');
+});
+
+
+    //Frontend review Post All Route 
+    Route::controller(ReviewController::class)->group(function () {
+
+   Route::post('/store/review', 'StoreReview')->name('store.review');
+});
+
 
 
 
