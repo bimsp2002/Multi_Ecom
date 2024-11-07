@@ -88,7 +88,11 @@
 						<div class="menu-title"> Review Manage </div>
 					</a>
 					<ul>
-						<li> <a href=""><i class="bx bx-right-arrow-alt"></i>All Review</a>
+						<li> 
+
+							 <a href="{{ route('vendor.all.review') }}"><i class="bx bx-right-arrow-alt"></i>All Review</a>
+
+
 						</li>
 
 						 

@@ -1,6 +1,6 @@
 @php
     $products = App\Models\Product::where('status', 1)->orderBy('id', 'DESC')->limit(10)->get();
-    $categories = App\Models\Category::orderBy('category_name', 'ASC')->limit(4)->get();    
+    $categories = App\Models\Category::orderBy('category_name', 'ASC')->limit(4)->get();
 
 @endphp
 
@@ -33,7 +33,8 @@
                                 data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                        <a
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             <img class="default-img" src="{{ asset($product->product_thambnail) }}"
                                                 alt="" />
 
@@ -54,11 +55,9 @@
                                     </div>
 
                                     @php
-                                      
-
 
                                         $amount = $product->selling_price - $product->discount_price;
-                                        $discount = ($product->discount_price/$product->selling_price) * 100;
+                                        $discount = ($product->discount_price / $product->selling_price) * 100;
                                     @endphp
 
 
@@ -78,22 +77,61 @@
                                     <div class="product-category">
                                         <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
                                     </div>
-                                    <h2><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                    <h2><a
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             {{ $product->product_name }} </a></h2>
-                        
+
+
+                                    @php
+
+                                        $reviewcount = App\Models\Review::where('product_id', $product->id)
+                                            ->where('status', 1)
+                                            ->latest()
+                                            ->get();
+
+                                        $avarage = App\Models\Review::where('product_id', $product->id)
+                                            ->where('status', 1)
+                                            ->avg('rating');
+                                    @endphp
+
+                                    <div class="product-rate-cover">
+                                        <div class="product-rate d-inline-block">
+
+                                            @if ($avarage == 0)
+                                            @elseif($avarage == 1 || $avarage < 2)
+                                                <div class="product-rating" style="width: 20%"></div>
+                                            @elseif($avarage == 2 || $avarage < 3)
+                                                <div class="product-rating" style="width: 40%"></div>
+                                            @elseif($avarage == 3 || $avarage < 4)
+                                                <div class="product-rating" style="width: 60%"></div>
+                                            @elseif($avarage == 4 || $avarage < 5)
+                                                <div class="product-rating" style="width: 80%"></div>
+                                            @elseif($avarage == 5 || $avarage < 5)
+                                                <div class="product-rating" style="width: 100%"></div>
+                                            @endif
+                                        </div>
+                                        <span class="font-small ml-5 text-muted"> ({{ count($reviewcount) }})</span>
+                                    </div>
+
+
+
+
+
+
+
+
+
 
 
 
                                     <div>
-                                        
                                         @if ($product->vendor_id == null)
-                                            <span class="font-small text-muted">By <a
-                                                    href="#">Owner</a></span>
+                                            <span class="font-small text-muted">By <a href="#">Owner</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
                                                     href="#">{{ $product['vendor']['name'] }}</a></span>
                                         @endif
-                                    
+
                                     </div>
 
                                     <div class="product-card-bottom">
@@ -105,7 +143,7 @@
                                             </div>
                                         @else
                                             <div class="product-price">
-                                                <span>Rs.{{ $amount}}</span>
+                                                <span>Rs.{{ $amount }}</span>
                                                 <span class="old-price">Rs.{{ $product->selling_price }}</span>
                                             </div>
                                         @endif
@@ -152,8 +190,7 @@
                                             <a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                                 <img class="default-img"
-                                                    src="{{ asset($product->product_thambnail) }}"
-                                                    alt="" />
+                                                    src="{{ asset($product->product_thambnail) }}" alt="" />
 
                                             </a>
                                         </div>
@@ -169,9 +206,9 @@
                                         </div>
 
                                         @php
-                                        $amount = $product->selling_price - $product->discount_price;
-                                        $discount = ($product->discount_price/$product->selling_price) * 100;
-                                    @endphp
+                                            $amount = $product->selling_price - $product->discount_price;
+                                            $discount = ($product->discount_price / $product->selling_price) * 100;
+                                        @endphp
 
 
 

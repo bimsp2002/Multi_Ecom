@@ -259,13 +259,13 @@
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="lni lni-indent-increase"></i>
                 </div>
-                <div class="menu-title">Review Manage</div>
+                <div class="menu-title">Manage Review</div>
             </a>
             <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Pending Review</a>
+                <li> <a href="{{ route('pending.review') }}"><i class="bx bx-right-arrow-alt"></i>Pending Review</a>
                 </li>
 
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Publish Review</a>
+                <li> <a href="{{route('publish.review')}}"><i class="bx bx-right-arrow-alt"></i>Publish Review</a>
                 </li>
 
 

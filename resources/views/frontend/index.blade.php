@@ -49,7 +49,8 @@
                                 data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                        <a
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             <img class="default-img" src="{{ asset($product->product_thambnail) }}"
                                                 alt="" />
 
@@ -68,9 +69,9 @@
                                     </div>
 
                                     @php
-                                    $amount = $product->selling_price - $product->discount_price;
-                                    $discount = ($product->discount_price/$product->selling_price) * 100;
-                                @endphp
+                                        $amount = $product->selling_price - $product->discount_price;
+                                        $discount = ($product->discount_price / $product->selling_price) * 100;
+                                    @endphp
 
                                     <div class="product-badges product-badges-position product-badges-mrg">
 
@@ -87,19 +88,40 @@
                                     <div class="product-category">
                                         <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
                                     </div>
-                                    <h2><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                    <h2><a
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             {{ $product->product_name }} </a></h2>
                                     @php
+                                        $reviewcount = App\Models\Review::where('product_id', $product->id)
+                                            ->where('status', 1)
+                                            ->latest()
+                                            ->get();
 
+                                        $avarage = App\Models\Review::where('product_id', $product->id)
+                                            ->where('status', 1)
+                                            ->avg('rating');
                                     @endphp
 
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
 
+<div class="product-rate-cover">
+    <div class="product-rate d-inline-block">
 
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"></span>
-                                    </div>
+        @if ($avarage == 0)
+        @elseif($avarage == 1 || $avarage < 2)
+            <div class="product-rating" style="width: 20%"></div>
+        @elseif($avarage == 2 || $avarage < 3)
+            <div class="product-rating" style="width: 40%"></div>
+        @elseif($avarage == 3 || $avarage < 4)
+            <div class="product-rating" style="width: 60%"></div>
+        @elseif($avarage == 4 || $avarage < 5)
+            <div class="product-rating" style="width: 80%"></div>
+        @elseif($avarage == 5 || $avarage < 5)
+            <div class="product-rating" style="width: 100%"></div>
+        @endif
+    </div>
+    <span class="font-small ml-5 text-muted">
+        ({{ count($reviewcount) }})</span>
+</div>
 
 
 
@@ -203,12 +225,10 @@
                                     </div>
 
                                     @php
-                                      
 
-
-                                    $amount = $product->selling_price - $product->discount_price;
-                                    $discount = ($product->discount_price/$product->selling_price) * 100;
-                                @endphp
+                                        $amount = $product->selling_price - $product->discount_price;
+                                        $discount = ($product->discount_price / $product->selling_price) * 100;
+                                    @endphp
 
                                     <div class="product-badges product-badges-position product-badges-mrg">
 
@@ -228,12 +248,37 @@
                                     <h2><a
                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             {{ $product->product_name }} </a></h2>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                    </div>
+
+                                            @php
+                                            $reviewcount = App\Models\Review::where('product_id', $product->id)
+                                            ->where('status', 1)
+                                            ->latest()
+                                            ->get();
+
+                                        $avarage = App\Models\Review::where('product_id', $product->id)
+                                            ->where('status', 1)
+                                            ->avg('rating');
+                                         @endphp
+
+<div class="product-rate-cover">
+    <div class="product-rate d-inline-block">
+
+        @if ($avarage == 0)
+        @elseif($avarage == 1 || $avarage < 2)
+            <div class="product-rating" style="width: 20%"></div>
+        @elseif($avarage == 2 || $avarage < 3)
+            <div class="product-rating" style="width: 40%"></div>
+        @elseif($avarage == 3 || $avarage < 4)
+            <div class="product-rating" style="width: 60%"></div>
+        @elseif($avarage == 4 || $avarage < 5)
+            <div class="product-rating" style="width: 80%"></div>
+        @elseif($avarage == 5 || $avarage < 5)
+            <div class="product-rating" style="width: 100%"></div>
+        @endif
+    </div>
+    <span class="font-small ml-5 text-muted">
+        ({{ count($reviewcount) }})</span>
+</div>
                                     <div>
                                         @if ($product->vendor_id == null)
                                             <span class="font-small text-muted">By <a
@@ -338,12 +383,10 @@
                                     </div>
 
                                     @php
-                                      
 
-
-                                    $amount = $product->selling_price - $product->discount_price;
-                                    $discount = ($product->discount_price/$product->selling_price) * 100;
-                                @endphp
+                                        $amount = $product->selling_price - $product->discount_price;
+                                        $discount = ($product->discount_price / $product->selling_price) * 100;
+                                    @endphp
 
 
                                     <div class="product-badges product-badges-position product-badges-mrg">
@@ -364,12 +407,38 @@
                                     <h2><a
                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             {{ $product->product_name }} </a></h2>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                    </div>
+
+                                        @php
+                                                    $reviewcount = App\Models\Review::where('product_id', $product->id)
+                                                    ->where('status', 1)
+                                                    ->latest()
+                                                    ->get();
+
+                                                $avarage = App\Models\Review::where('product_id', $product->id)
+                                                    ->where('status', 1)
+                                                    ->avg('rating');
+
+                                        @endphp
+
+<div class="product-rate-cover">
+    <div class="product-rate d-inline-block">
+
+        @if ($avarage == 0)
+        @elseif($avarage == 1 || $avarage < 2)
+            <div class="product-rating" style="width: 20%"></div>
+        @elseif($avarage == 2 || $avarage < 3)
+            <div class="product-rating" style="width: 40%"></div>
+        @elseif($avarage == 3 || $avarage < 4)
+            <div class="product-rating" style="width: 60%"></div>
+        @elseif($avarage == 4 || $avarage < 5)
+            <div class="product-rating" style="width: 80%"></div>
+        @elseif($avarage == 5 || $avarage < 5)
+            <div class="product-rating" style="width: 100%"></div>
+        @endif
+    </div>
+    <span class="font-small ml-5 text-muted">
+        ({{ count($reviewcount) }})</span>
+</div>
                                     <div>
                                         @if ($product->vendor_id == null)
                                             <span class="font-small text-muted">By <a
@@ -441,14 +510,11 @@
                 <div class="product-list-small animated animated">
 
                     @foreach ($hot_deals as $item)
+                        @php
 
-                    @php
-                                      
-
-
-                    $amount = $item->selling_price - $item->discount_price;
-                    $discount = ($item->discount_price/$item->selling_price) * 100;
-                @endphp
+                            $amount = $item->selling_price - $item->discount_price;
+                            $discount = ($item->discount_price / $item->selling_price) * 100;
+                        @endphp
 
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
@@ -460,12 +526,20 @@
                                     <a href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}">
                                         {{ $item->product_name }} </a>
                                 </h6>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                </div>
+
+                                @php
+                                                $reviewcount = App\Models\Review::where('product_id', $product->id)
+                                                    ->where('status', 1)
+                                                    ->latest()
+                                                    ->get();
+
+                                                $avarage = App\Models\Review::where('product_id', $product->id)
+                                                    ->where('status', 1)
+                                                    ->avg('rating');
+                                @endphp
+                        
+
+
                                 @if ($item->discount_price == null)
                                     <div class="product-price">
                                         <span>${{ $item->selling_price }}</span>
@@ -477,7 +551,7 @@
                                         <span class="old-price">${{ $item->selling_price }}</span>
                                     </div>
                                 @endif
-                            </div>
+                            </>
                         </article>
                     @endforeach
 
@@ -493,14 +567,11 @@
 
 
                     @foreach ($special_offer as $item)
+                        @php
 
-                    @php
-                                      
-
-
-                    $amount = $item->selling_price - $item->discount_price;
-                    $discount = ($item->discount_price/$item->selling_price) * 100;
-                @endphp
+                            $amount = $item->selling_price - $item->discount_price;
+                            $discount = ($item->discount_price / $item->selling_price) * 100;
+                        @endphp
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
                                 <a href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}"><img
@@ -511,12 +582,7 @@
                                     <a href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}">
                                         {{ $item->product_name }} </a>
                                 </h6>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                </div>
+                               
                                 @if ($item->discount_price == null)
                                     <div class="product-price">
                                         <span>${{ $item->selling_price }}</span>
@@ -544,14 +610,11 @@
 
 
                     @foreach ($new as $item)
+                        @php
 
-                    @php
-                                      
-
-
-                    $amount = $item->selling_price - $item->discount_price;
-                    $discount = ($item->discount_price/$item->selling_price) * 100;
-                @endphp
+                            $amount = $item->selling_price - $item->discount_price;
+                            $discount = ($item->discount_price / $item->selling_price) * 100;
+                        @endphp
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
                                 <a href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}"><img
@@ -562,12 +625,7 @@
                                     <a href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}">
                                         {{ $item->product_name }} </a>
                                 </h6>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                </div>
+                               
                                 @if ($item->discount_price == null)
                                     <div class="product-price">
                                         <span>${{ $item->selling_price }}</span>
@@ -595,13 +653,11 @@
 
 
                     @foreach ($special_deals as $item)
-                    @php
-                                      
+                        @php
 
-
-                    $amount = $item->selling_price - $item->discount_price;
-                    $discount = ($item->discount_price/$item->selling_price) * 100;
-                @endphp
+                            $amount = $item->selling_price - $item->discount_price;
+                            $discount = ($item->discount_price / $item->selling_price) * 100;
+                        @endphp
                         <article class="row align-items-center hover-up">
                             <figure class="col-md-4 mb-0">
                                 <a href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}"><img
@@ -612,12 +668,7 @@
                                     <a href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}">
                                         {{ $item->product_name }} </a>
                                 </h6>
-                                <div class="product-rate-cover">
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                </div>
+                               
                                 @if ($item->discount_price == null)
                                     <div class="product-price">
                                         <span>${{ $item->selling_price }}</span>

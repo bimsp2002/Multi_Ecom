@@ -28,8 +28,9 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
-use App\Http\Controllers\User\WishlistController;
 
+
+use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\CheckoutController;
@@ -124,6 +125,12 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/complete/return/order', 'VendorCompleteReturnOrder')->name('vendor.complete.return.order');
         Route::get('/vendor/order/details/{order_id}', 'VendorOrderDetails')->name('vendor.order.details');
     });
+
+    Route::controller(ReviewController::class)->group(function(){
+        Route::get('/vendor/all/review' , 'VendorAllReview')->name('vendor.all.review'); 
+    });
+
+
 }); //end vendor middlser
 
 
@@ -330,6 +337,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::get('/admin/delete/blog/post/{id}', 'DeleteBlogPost')->name('delete.blog.post');
     });
+
+    // Admin Reviw All Route 
+    Route::controller(ReviewController::class)->group(function(){
+
+        Route::get('/pending/review' , 'PendingReview')->name('pending.review');
+        Route::get('/review/approve/{id}' , 'ReviewApprove')->name('review.approve');
+        Route::get('/publish/review' , 'PublishReview')->name('publish.review'); 
+        Route::get('/review/delete/{id}' , 'ReviewDelete')->name('review.delete');
+   });
+
+
 }); //endmiddler 
 
 /// Frontend Product Details All Route 
@@ -383,9 +401,9 @@ Route::controller(BlogController::class)->group(function () {
 
 
     //Frontend review Post All Route 
-    Route::controller(ReviewController::class)->group(function () {
+    Route::controller(ReviewController::class)->group(function () { 
+        Route::post('/store/review', 'StoreReview')->name('store.review');
 
-   Route::post('/store/review', 'StoreReview')->name('store.review');
 });
 
 

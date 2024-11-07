@@ -54,16 +54,34 @@
                             <div class="product-detail-rating">
                                 <div class="product-rate-cover text-end">
 
+                                    @php
 
+                                    $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+                                    
+                                    $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                                    @endphp
 
 
                                     <div class="product-rate d-inline-block">
 
+                                        @if($avarage == 0)
+      
+                                        @elseif($avarage == 1 || $avarage < 2)                     
+                                     <div class="product-rating" style="width: 20%"></div>
+                                        @elseif($avarage == 2 || $avarage < 3)                     
+                                     <div class="product-rating" style="width: 40%"></div>
+                                        @elseif($avarage == 3 || $avarage < 4)                     
+                                     <div class="product-rating" style="width: 60%"></div>
+                                        @elseif($avarage == 4 || $avarage < 5)                     
+                                     <div class="product-rating" style="width: 80%"></div>
+                                        @elseif($avarage == 5 || $avarage < 5)                     
+                                     <div class="product-rating" style="width: 100%"></div>
+                                     @endif                          
                                     </div>
 
 
 
-                                    <span class="font-small ml-5 text-muted"> </span>
+                                    <span class="font-small ml-5 text-muted"> ({{ count($reviewcount)}} reviews)</span>
                                 </div>
                             </div>
                             <div class="clearfix product-price-cover">
@@ -201,8 +219,8 @@
                                     href="#Vendor-info">Vendor</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews
-                                </a>
+                                <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews ({{ count($reviewcount) }})</a>
+
                             </li>
                         </ul>
                         <div class="tab-content shop_info_tab entry-main-content">
@@ -336,46 +354,7 @@
                                         </div>
 
                                         <div class="col-lg-4">
-                                            <h4 class="mb-30">Customer reviews</h4>
-                                            <div class="d-flex mb-30">
-                                                <div class="product-rate d-inline-block mr-15">
-                                                    <div class="product-rating" style="width: 90%"></div>
-                                                </div>
-                                                <h6>4.8 out of 5</h6>
-                                            </div>
-                                            <div class="progress">
-                                                <span>5 star</span>
-                                                <div class="progress-bar" role="progressbar" style="width: 50%"
-                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%
-                                                </div>
-                                            </div>
-                                            <div class="progress">
-                                                <span>4 star</span>
-                                                <div class="progress-bar" role="progressbar" style="width: 25%"
-                                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%
-                                                </div>
-                                            </div>
-                                            <div class="progress">
-                                                <span>3 star</span>
-                                                <div class="progress-bar" role="progressbar" style="width: 45%"
-                                                    aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%
-                                                </div>
-                                            </div>
-                                            <div class="progress">
-                                                <span>2 star</span>
-                                                <div class="progress-bar" role="progressbar" style="width: 65%"
-                                                    aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%
-                                                </div>
-                                            </div>
-                                            <div class="progress mb-30">
-                                                <span>1 star</span>
-                                                <div class="progress-bar" role="progressbar" style="width: 85%"
-                                                    aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%
-                                                </div>
-                                            </div>
-                                            <a href="#" class="font-xs text-muted">How are ratings
-                                                calculated?</a>
-                                        </div>
+                                                                                    </div>
                                     </div>
                                 </div>
 
