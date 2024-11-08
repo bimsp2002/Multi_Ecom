@@ -204,7 +204,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/product/{id}', 'ProductDelete')->name('delete.product');
 
         // For Product Stock
-        //  Route::get('/product/stock' , 'ProductStock')->name('product.stock');
+        Route::get('/product/stock' , 'ProductStock')->name('product.stock');
+        
     });
 
     // Slider All Route 
@@ -348,7 +349,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/publish/review' , 'PublishReview')->name('publish.review'); 
         Route::get('/review/delete/{id}' , 'ReviewDelete')->name('review.delete');
    });
-   
+
    // Site Setting All Route 
     Route::controller(SiteSettingController::class)->group(function(){
         Route::get('/site/setting' , 'SiteSetting')->name('site.setting');

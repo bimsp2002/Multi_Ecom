@@ -294,10 +294,10 @@
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="lni lni-cart-full"></i>
                 </div>
-                <div class="menu-title">Stock Manage</div>
+                <div class="menu-title">Manage Stock</div>
             </a>
             <ul>
-                <li> <a href=""><i class="bx bx-right-arrow-alt"></i>Product Stock</a>
+                <li> <a href="{{ route('product.stock') }}"><i class="bx bx-right-arrow-alt"></i>Product Stock</a>
                 </li>
 
 
