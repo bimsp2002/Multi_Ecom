@@ -2,7 +2,7 @@
 @section('main')
 
 @section('title')
-    Home Easy Multi Vendor Shop
+Multi Ecommerce System 
 @endsection
 
 @include('frontend.home.home_slider')

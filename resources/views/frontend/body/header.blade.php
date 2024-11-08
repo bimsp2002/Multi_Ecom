@@ -31,29 +31,11 @@
                     <div class="header-info header-info-right">
                         <ul>
 
-                            <li>
-                                <a class="language-dropdown-active" href="#">English <i
-                                        class="fi-rs-angle-small-down"></i></a>
-                                <ul class="language-dropdown">
-                                    <li>
-                                        <a href="#"><img
-                                                src="{{ asset('frontend/assets/imgs/theme/flag-fr.png') }}"
-                                                alt="" />Français</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img
-                                                src="{{ asset('frontend/assets/imgs/theme/flag-dt.png') }}"
-                                                alt="" />Deutsch</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img
-                                                src="{{ asset('frontend/assets/imgs/theme/flag-ru.png') }}"
-                                                alt="" /></a>
-                                    </li>
-                                </ul>
-                            </li>
+                            @php
+                            $setting = App\Models\SiteSetting::find(1);
+                        @endphp
 
-                            <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li>
+                            <li>Need help? Call Us:  <strong class="text-brand">  {{ $setting->phone_one }}</strong></li>
 
                         </ul>
                     </div>
@@ -62,13 +44,15 @@
         </div>
     </div>
     @php
+        $setting = App\Models\SiteSetting::find(1);
     @endphp
-    <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
-        <div class="container">
-            <div class="header-wrap">
-                <div class="logo logo-width-1">
-                    <a href="{{ url('/') }}"><img src="" alt="logo" /></a>
-                </div>
+
+       <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+            <div class="container">
+                <div class="header-wrap">
+                    <div class="logo logo-width-1">
+                        <a href="/"><img src="{{ asset($setting->logo)   }}" alt="logo" /></a>
+                    </div>
                 <div class="header-right">
                     <div class="search-style-2">
 
@@ -330,8 +314,7 @@
 
                 <div class="hotline d-none d-lg-flex">
                     <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
-                    <p><span>24/7 Support Center</span></p>
-                </div>
+                    <p>{{ $setting->support_phone }}<span>24/7 Support Center</span></p>                </div>
                 <div class="header-action-icon-2 d-block d-lg-none">
                     <div class="burger-icon burger-icon-white">
                         <span class="burger-icon-top"></span>
