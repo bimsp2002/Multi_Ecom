@@ -205,7 +205,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         // For Product Stock
         Route::get('/product/stock' , 'ProductStock')->name('product.stock');
-        
+
     });
 
     // Slider All Route 
@@ -467,8 +467,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
         Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
 
-        // Order Tracking 
-        //Route::get('/user/track/order' , 'UserTrackOrder')->name('user.track.order');
-        // Route::post('/order/tracking' , 'OrderTracking')->name('order.tracking');
+        //Order Tracking 
+        Route::get('/user/track/order' , 'UserTrackOrder')->name('user.track.order');
+        Route::post('/order/tracking' , 'OrderTracking')->name('order.tracking');
     });
 });
