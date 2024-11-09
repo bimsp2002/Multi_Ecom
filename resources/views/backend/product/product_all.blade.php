@@ -72,17 +72,19 @@
 				
 				<td>
 
+@if(Auth::user()->can('product.edit'))				
 <a href="{{ route('edit.product',$item->id) }}" class="btn btn-info" title="Edit Data"> <i class="fa fa-pencil"></i> </a>
-
+@endif
+@if(Auth::user()->can('product.delete'))	
 <a href="{{ route('delete.product',$item->id) }}" class="btn btn-danger" id="delete" title="Delete Data" ><i class="fa fa-trash"></i></a>
-<a href="" class="btn btn-warning" title="Details Page"> <i class="fa fa-eye"></i> </a>
+@endif
+<a href="#" class="btn btn-warning" title="Details Page"> <i class="fa fa-eye"></i> </a>
 
 @if($item->status == 1)
-<a href="{{ route('product.inactive',$item->id) }}" class="btn btn-primary" title="Turn Inactive"> <i class="fas fa-toggle-on"></i> </a>
+<a href="{{ route('product.inactive',$item->id) }}" class="btn btn-primary" title="Inactive"> <i class="fa-solid fa-thumbs-down"></i> </a>
 @else
-<a href="{{ route('product.active',$item->id) }}" class="btn btn-primary" title=" Turn Active"> <i class="fas fa-toggle-off"></i> </a>
+<a href="{{ route('product.active',$item->id) }}" class="btn btn-primary" title="Active"> <i class="fa-solid fa-thumbs-up"></i> </a>
 @endif
-
 				</td> 
 			</tr>    
 			@endforeach
