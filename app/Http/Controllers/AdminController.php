@@ -133,8 +133,9 @@ class AdminController extends Controller
             'message' => 'Vendor Active Successfully',
             'alert-type' => 'success'
         );
-        return redirect()->route('active.vendor')->with($notification);
-    } // End Mehtod 
+        $vuser = User::where('role','vendor')->get();
+        Notification::send($vuser, new VendorApproveNotification($request));
+        return redirect()->route('active.vendor')->with($notification);    } // End Mehtod 
 
     public function ActiveVendorDetails($id)
     {

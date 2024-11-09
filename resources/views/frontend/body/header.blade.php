@@ -58,50 +58,24 @@
                         <form action="{{ route('product.search') }}" method="post">
                             @csrf
 
-                            <select class="select-active">
-                                <option>All Categories</option>
-                                <option>Milks and Dairies</option>
-                                <option>Wines & Alcohol</option>
-                                <option>Clothing & Beauty</option>
-                                <option>Pet Foods & Toy</option>
-                                <option>Fast food</option>
-                                <option>Baking material</option>
-                                <option>Vegetables</option>
-                                <option>Fresh Seafood</option>
-                                <option>Noodles & Rice</option>
-                                <option>Ice cream</option>
-                            </select>
+                            
                             <input onfocus="search_result_show()" onblur="search_result_hide()" name="search"
                                 id="search" placeholder="Search for items..." />
                             <div id="searchProducts"></div>
                         </form>
-
-
-
-
                     </div>
                     <div class="header-action-right">
                         <div class="header-action-2">
-                            <div class="search-location">
-                                <form action="#">
-                                    <select class="select-active">
-                                        <option>Your Location</option>
-                                        <option>Alabama</option>
-                                        <option>Alaska</option>
-                                        <option>Arizona</option>
-                                        <option>Delaware</option>
-                                        <option>Florida</option>
-                                        <option>Georgia</option>
-                                        <option>Hawaii</option>
-                                        <option>Indiana</option>
-                                        <option>Maryland</option>
-                                        <option>Nevada</option>
-                                        <option>New Jersey</option>
-                                        <option>New Mexico</option>
-                                        <option>New York</option>
-                                    </select>
-                                </form>
-                            </div>
+
+                            <!-- binary  -->
+                            <form action="{{ route('product.search') }}" method="post">
+                                @csrf
+    
+                                
+                                <input onfocus="search_result_show()" onblur="search_result_hide()" name="search"
+                                    id="search" placeholder="Search for items..." />
+                                <div id="searchProducts"></div>
+                            </form>
 
                             <div class="header-action-icon-2">
                                 <a href="{{ route('compare') }}">
@@ -245,24 +219,27 @@
                         <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
                             <div class="d-flex categori-dropdown-inner">
                                 <ul>
-                                    @foreach ($categories as $item)
+                                    @foreach($categories as $item)
+                                    @if($loop->index < 6)
                                         <li>
                                             <a
                                                 href="{{ url('product/category/' . $item->id . '/' . $item->category_slug) }}">
                                                 <img src="{{ asset($item->category_image) }}" alt="" />
                                                 {{ $item->category_name }} </a>
                                         </li>
-                                    @endforeach
+                                        @endif
+                                        @endforeach
                                 </ul>
                                 <ul class="end">
-                                    @foreach ($categories as $item)
-                                        <li>
+                                    @foreach($categories as $item)
+                                    @if($loop->index > 7)                                        <li>
                                             <a
                                                 href="{{ url('product/category/' . $item->id . '/' . $item->category_slug) }}">
                                                 <img src="{{ asset($item->category_image) }}" alt="" />
                                                 {{ $item->category_name }} </a>
                                         </li>
-                                    @endforeach
+                                        @endif
+                                        @endforeach
 
                                 </ul>
                             </div>
@@ -310,8 +287,7 @@
 
 
                                 <li>
-                                    <a href="">Shop</a>
-                                </li>
+                                    <a href="{{ route('shop.page') }}">Shop</a>                                </li>
                             </ul>
                         </nav>
                     </div>

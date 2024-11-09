@@ -15,6 +15,8 @@ use App\Mail\OrderMail;
 use App\Models\User;
 use App\Notifications\OrderComplete;
 use Illuminate\Support\Facades\Notification;
+
+
 class StripeController extends Controller
 {
     public function StripeOrder(Request $request){
@@ -174,8 +176,8 @@ class StripeController extends Controller
             'alert-type' => 'success'
         );
 
+        Notification::send($user, new OrderComplete($request->name));
         return redirect()->route('dashboard')->with($notification); 
-
 
 
     }// End Method 

@@ -110,6 +110,7 @@ class VendorController extends Controller
 
     public function VendorRegister(Request $request) {
        
+        $vuser = User::where('role','admin')->get();
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -132,8 +133,8 @@ class VendorController extends Controller
             'message' => 'Vendor Registered Successfully',
             'alert-type' => 'success'
         );
-        return redirect()->route('vendor.login')->with($notification);
-       
+        Notification::send($vuser, new VendorRegNotification($request));
+        return redirect()->route('vendor.login')->with($notification);       
     }// End Mehtod 
 
 

@@ -30,7 +30,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
-
+use App\Http\Controllers\Frontend\ShopController;
 
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\ReviewController;
@@ -404,7 +404,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/user/update/{id}', 'AdminUserUpdate')->name('admin.user.update');
         Route::get('/delete/admin/role/{id}', 'DeleteAdminRole')->name('delete.admin.role');
     });
-    
+
 }); //admin backend endmiddler 
 
 
@@ -471,6 +471,14 @@ Route::controller(IndexController::class)->group(function () {
     Route::post('/search', 'ProductSearch')->name('product.search');
     Route::post('/search-product', 'SearchProduct');
 });
+
+// Shop Page All Route 
+Route::controller(ShopController::class)->group(function(){
+
+    Route::get('/shop' , 'ShopPage')->name('shop.page');
+    Route::post('/shop/filter' , 'ShopFilter')->name('shop.filter');
+    
+   });
 
 
 
