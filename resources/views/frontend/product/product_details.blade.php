@@ -97,11 +97,11 @@
                                     </div>
                                 @else
                                     <div class="product-price primary-color float-left">
-                                        <span class="current-price text-brand">${{ $amount }}</span>
+                                        <span class="current-price text-brand">Rs.{{ $amount }}</span>
                                         <span>
                                             <span class="save-price font-md color3 ml-15">{{ round($discount) }}%
                                                 Off</span>
-                                            <span class="old-price font-md ml-15">${{ $product->selling_price }}</span>
+                                            <span class="old-price font-md ml-15">Rs. {{ $product->selling_price }}</span>
                                         </span>
                                     </div>
                                 @endif
@@ -475,22 +475,24 @@
                                                 </a>
                                             </div>
                                             <div class="product-action-1">
-                                                <a aria-label="Quick view" class="action-btn small hover-up"
-                                                    data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                                        class="fi-rs-search"></i></a>
-                                                <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                    href="shop-wishlist.html" tabindex="0"><i
-                                                        class="fi-rs-heart"></i></a>
-                                                <a aria-label="Compare" class="action-btn small hover-up"
-                                                    href="shop-compare.html" tabindex="0"><i
-                                                        class="fi-rs-shuffle"></i></a>
+
+                                                <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
+                                                    onclick="addToWishList(this.id)"><i class="fi-rs-heart"></i></a>
+        
+                                                <a aria-label="Compare" class="action-btn" id="{{ $product->id }}"
+                                                    onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
+        
+                                                <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
+                                                    data-bs-target="#quickViewModal" id="{{ $product->id }}"
+                                                    onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
+        
                                             </div>
 
                                             @php
-                                                $amount = $product->selling_price - $product->discount_price;
-                                                $discount = ($amount / $product->selling_price) * 100;
+                                            $amount = $product->selling_price - $product->discount_price;
+                                            $discount = ($product->discount_price / $product->selling_price) * 100;
+                                        @endphp
 
-                                            @endphp
                                             <div class="product-badges product-badges-position product-badges-mrg">
 
 
@@ -513,12 +515,12 @@
 
                                             @if ($product->discount_price == null)
                                                 <div class="product-price">
-                                                    <span>${{ $product->selling_price }}</span>
+                                                    <span>Rs. {{ $product->selling_price }}</span>
 
                                                 </div>
                                             @else
                                                 <div class="product-price">
-                                                    <span>${{ $product->discount_price }}</span>
+                                                    <span>Rs. {{ $product->selling_price - $product->discount_price }}</span>
                                                     <span class="old-price">${{ $product->selling_price }}</span>
                                                 </div>
                                             @endif

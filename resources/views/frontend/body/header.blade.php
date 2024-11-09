@@ -10,9 +10,9 @@
                     <div class="header-info">
                         <ul>
 
-                            <li><a href="page-account.html">My Cart</a></li>
-                            <li><a href="shop-wishlist.html">Checkout</a></li>
-                            <li><a href="shop-order.html">Order Tracking</a></li>
+                            <li><a href="{{ route('mycart') }}">My Cart</a></li>
+                            <li><a href="{{ route('checkout') }}">Checkout</a></li>
+                            <li><a href="{{ route('user.track.order') }}">Order Tracking</a></li>
                         </ul>
                     </div>
                 </div>
@@ -32,10 +32,10 @@
                         <ul>
 
                             @php
-                            $setting = App\Models\SiteSetting::find(1);
-                        @endphp
+                                $setting = App\Models\SiteSetting::find(1);
+                            @endphp
 
-                            <li>Need help? Call Us:  <strong class="text-brand">  {{ $setting->phone_one }}</strong></li>
+                            <li>Need help? Call Us: <strong class="text-brand"> {{ $setting->phone_one }}</strong></li>
 
                         </ul>
                     </div>
@@ -47,16 +47,15 @@
         $setting = App\Models\SiteSetting::find(1);
     @endphp
 
-       <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
-            <div class="container">
-                <div class="header-wrap">
-                    <div class="logo logo-width-1">
-                        <a href="/"><img src="{{ asset($setting->logo)   }}" alt="logo" /></a>
-                    </div>
+    <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+        <div class="container">
+            <div class="header-wrap">
+                <div class="logo logo-width-1">
+                    <a href="/"><img src="{{ asset($setting->logo) }}" alt="logo" /></a>
+                </div>
                 <div class="header-right">
                     <div class="search-style-2">
-
-                        <form action="" method="post">
+                        <form action="{{ route('product.search') }}" method="post">
                             @csrf
 
                             <select class="select-active">
@@ -76,6 +75,10 @@
                                 id="search" placeholder="Search for items..." />
                             <div id="searchProducts"></div>
                         </form>
+
+
+
+
                     </div>
                     <div class="header-action-right">
                         <div class="header-action-2">
@@ -102,19 +105,21 @@
 
                             <div class="header-action-icon-2">
                                 <a href="{{ route('compare') }}">
-                                    <img class="svgInject" alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-compare.svg')}}" />
+                                    <img class="svgInject" alt="Nest"
+                                        src="{{ asset('frontend/assets/imgs/theme/icons/icon-compare.svg') }}" />
                                 </a>
                                 <a href="{{ route('compare') }}"><span class="lable ml-0">Compare</span></a>
                             </div>
 
                             <div class="header-action-icon-2">
                                 <a href="{{ route('wishlist') }}">
-                                    <img class="svgInject" alt="Nest" src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />
+                                    <img class="svgInject" alt="Nest"
+                                        src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />
                                     <span class="pro-count blue" id="wishQty">0 </span>
                                 </a>
                                 <a href="{{ route('wishlist') }}"><span class="lable">Wishlist</span></a>
                             </div>
-            
+
 
 
 
@@ -125,7 +130,7 @@
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />
                                     <span class="pro-count blue" id="cartQty">0</span>
                                 </a>
-                                <a href="{{ route('mycart')}}"><span class="lable">Cart</span></a>
+                                <a href="{{ route('mycart') }}"><span class="lable">Cart</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
 
 
@@ -145,8 +150,8 @@
                                             <h4>Total <span id="cartSubTotal"> </span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="{{ route('mycart')}}" class="outline">View cart</a>
-                                            <a href="{{route('checkout')}}">Checkout</a>
+                                            <a href="{{ route('mycart') }}" class="outline">View cart</a>
+                                            <a href="{{ route('checkout') }}">Checkout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -294,7 +299,8 @@
                                         <ul class="sub-menu">
                                             @foreach ($subcategories as $subcategory)
                                                 <li>
-                                                    <a href="{{ url('product/subcategory/' . $subcategory->id . '/' . $subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a>
+                                                    <a
+                                                        href="{{ url('product/subcategory/' . $subcategory->id . '/' . $subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -314,7 +320,8 @@
 
                 <div class="hotline d-none d-lg-flex">
                     <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
-                    <p>{{ $setting->support_phone }}<span>24/7 Support Center</span></p>                </div>
+                    <p>{{ $setting->support_phone }}<span>24/7 Support Center</span></p>
+                </div>
                 <div class="header-action-icon-2 d-block d-lg-none">
                     <div class="burger-icon burger-icon-white">
                         <span class="burger-icon-top"></span>

@@ -128,11 +128,9 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/order/details/{order_id}', 'VendorOrderDetails')->name('vendor.order.details');
     });
 
-    Route::controller(ReviewController::class)->group(function(){
-        Route::get('/vendor/all/review' , 'VendorAllReview')->name('vendor.all.review'); 
+    Route::controller(ReviewController::class)->group(function () {
+        Route::get('/vendor/all/review', 'VendorAllReview')->name('vendor.all.review');
     });
-
-
 }); //end vendor middlser
 
 
@@ -204,8 +202,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/product/{id}', 'ProductDelete')->name('delete.product');
 
         // For Product Stock
-        Route::get('/product/stock' , 'ProductStock')->name('product.stock');
-
+        Route::get('/product/stock', 'ProductStock')->name('product.stock');
     });
 
     // Slider All Route 
@@ -342,25 +339,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
     // Admin Reviw All Route 
-    Route::controller(ReviewController::class)->group(function(){
+    Route::controller(ReviewController::class)->group(function () {
 
-        Route::get('/pending/review' , 'PendingReview')->name('pending.review');
-        Route::get('/review/approve/{id}' , 'ReviewApprove')->name('review.approve');
-        Route::get('/publish/review' , 'PublishReview')->name('publish.review'); 
-        Route::get('/review/delete/{id}' , 'ReviewDelete')->name('review.delete');
-   });
+        Route::get('/pending/review', 'PendingReview')->name('pending.review');
+        Route::get('/review/approve/{id}', 'ReviewApprove')->name('review.approve');
+        Route::get('/publish/review', 'PublishReview')->name('publish.review');
+        Route::get('/review/delete/{id}', 'ReviewDelete')->name('review.delete');
+    });
 
-   // Site Setting All Route 
-    Route::controller(SiteSettingController::class)->group(function(){
-        Route::get('/site/setting' , 'SiteSetting')->name('site.setting');
-        Route::post('/site/setting/update' , 'SiteSettingUpdate')->name('site.setting.update');
-        Route::get('/seo/setting' , 'SeoSetting')->name('seo.setting');
-        Route::post('/seo/setting/update' , 'SeoSettingUpdate')->name('seo.setting.update');
-   });
-
-
-
-
+    // Site Setting All Route 
+    Route::controller(SiteSettingController::class)->group(function () {
+        Route::get('/site/setting', 'SiteSetting')->name('site.setting');
+        Route::post('/site/setting/update', 'SiteSettingUpdate')->name('site.setting.update');
+        Route::get('/seo/setting', 'SeoSetting')->name('seo.setting');
+        Route::post('/seo/setting/update', 'SeoSettingUpdate')->name('seo.setting.update');
+    });
 }); //admin endmiddler 
 
 /// Frontend Product Details All Route 
@@ -413,10 +406,16 @@ Route::controller(BlogController::class)->group(function () {
 });
 
 
-    //Frontend review Post All Route 
-    Route::controller(ReviewController::class)->group(function () { 
-        Route::post('/store/review', 'StoreReview')->name('store.review');
+//Frontend review Post All Route 
+Route::controller(ReviewController::class)->group(function () {
+    Route::post('/store/review', 'StoreReview')->name('store.review');
+});
 
+// Search All Route 
+Route::controller(IndexController::class)->group(function () {
+
+    Route::post('/search', 'ProductSearch')->name('product.search');
+    Route::post('/search-product', 'SearchProduct');
 });
 
 
@@ -468,7 +467,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
 
         //Order Tracking 
-        Route::get('/user/track/order' , 'UserTrackOrder')->name('user.track.order');
-        Route::post('/order/tracking' , 'OrderTracking')->name('order.tracking');
+        Route::get('/user/track/order', 'UserTrackOrder')->name('user.track.order');
+        Route::post('/order/tracking', 'OrderTracking')->name('order.tracking');
     });
 });
