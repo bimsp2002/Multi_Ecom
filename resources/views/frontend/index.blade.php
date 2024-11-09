@@ -141,12 +141,12 @@ Multi Ecommerce System
 
                                         @if ($product->discount_price == null)
                                             <div class="product-price">
-                                                <span>${{ $product->selling_price }}</span>
+                                                <span>Rs. {{ $product->selling_price }}</span>
 
                                             </div>
                                         @else
                                             <div class="product-price">
-                                                <span>${{ $amount }}</span>
+                                                <span>Rs. {{ $amount }}</span>
                                                 <span class="old-price">${{ $product->selling_price }}</span>
                                             </div>
                                         @endif
@@ -295,12 +295,12 @@ Multi Ecommerce System
 
                                         @if ($product->discount_price == null)
                                             <div class="product-price">
-                                                <span>${{ $product->selling_price }}</span>
+                                                <span>Rs. {{ $product->selling_price }}</span>
 
                                             </div>
                                         @else
                                             <div class="product-price">
-                                                <span>${{ $amount }}</span>
+                                                <span>Rs. {{ $amount }}</span>
                                                 <span class="old-price">${{ $product->selling_price }}</span>
                                             </div>
                                         @endif
@@ -455,12 +455,12 @@ Multi Ecommerce System
 
                                         @if ($product->discount_price == null)
                                             <div class="product-price">
-                                                <span>${{ $product->selling_price }}</span>
+                                                <span>Rs. {{ $product->selling_price }}</span>
 
                                             </div>
                                         @else
                                             <div class="product-price">
-                                                <span>${{ $amount }}</span>
+                                                <span>Rs. {{ $amount }}</span>
                                                 <span class="old-price">${{ $product->selling_price }}</span>
                                             </div>
                                         @endif
@@ -542,12 +542,12 @@ Multi Ecommerce System
 
                                 @if ($item->discount_price == null)
                                     <div class="product-price">
-                                        <span>${{ $item->selling_price }}</span>
+                                        <span>Rs. {{ $item->selling_price }}</span>
 
                                     </div>
                                 @else
                                     <div class="product-price">
-                                        <span>${{ $amount }}</span>
+                                        <span>Rs. {{ $amount }}</span>
                                         <span class="old-price">${{ $item->selling_price }}</span>
                                     </div>
                                 @endif
@@ -585,12 +585,12 @@ Multi Ecommerce System
                                
                                 @if ($item->discount_price == null)
                                     <div class="product-price">
-                                        <span>${{ $item->selling_price }}</span>
+                                        <span>Rs. {{ $item->selling_price }}</span>
 
                                     </div>
                                 @else
                                     <div class="product-price">
-                                        <span>${{ $amount }}</span>
+                                        <span>Rs. {{ $amount }}</span>
                                         <span class="old-price">${{ $item->selling_price }}</span>
                                     </div>
                                 @endif
@@ -628,12 +628,12 @@ Multi Ecommerce System
                                
                                 @if ($item->discount_price == null)
                                     <div class="product-price">
-                                        <span>${{ $item->selling_price }}</span>
+                                        <span>Rs. {{ $item->selling_price }}</span>
 
                                     </div>
                                 @else
                                     <div class="product-price">
-                                        <span>${{ $amount }}</span>
+                                        <span>Rs. {{ $amount }}</span>
                                         <span class="old-price">${{ $item->selling_price }}</span>
                                     </div>
                                 @endif
@@ -671,12 +671,12 @@ Multi Ecommerce System
                                
                                 @if ($item->discount_price == null)
                                     <div class="product-price">
-                                        <span>${{ $item->selling_price }}</span>
+                                        <span>Rs.{{ $item->selling_price }}</span>
 
                                     </div>
                                 @else
                                     <div class="product-price">
-                                        <span>${{ $amount }}</span>
+                                        <span>Rs. {{ $amount }}</span>
                                         <span class="old-price">${{ $item->selling_price }}</span>
                                     </div>
                                 @endif

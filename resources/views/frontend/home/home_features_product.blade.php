@@ -114,12 +114,12 @@
 
                                             @if ($product->discount_price == null)
                                                 <div class="product-price mt-10">
-                                                    <span>${{ $product->selling_price }} </span>
+                                                    <span>Rs. {{ $product->selling_price }} </span>
 
                                                 </div>
                                             @else
                                                 <div class="product-price mt-10">
-                                                    <span>${{ $amount }} </span>
+                                                    <span>Rs. {{ $amount }} </span>
                                                     <span class="old-price">${{ $product->selling_price }}</span>
                                                 </div>
                                             @endif
