@@ -40,13 +40,7 @@
                                     </div>
                                 </div>
                                 <div class="sort-by-dropdown">
-                                    <ul>
-                                        <li><a class="active" href="#">50</a></li>
-                                        <li><a href="#">100</a></li>
-                                        <li><a href="#">150</a></li>
-                                        <li><a href="#">200</a></li>
-                                        <li><a href="#">All</a></li>
-                                    </ul>
+                                    
                                 </div>
                             </div>
                             <div class="sort-by-cover">
@@ -59,13 +53,7 @@
                                     </div>
                                 </div>
                                 <div class="sort-by-dropdown">
-                                    <ul>
-                                        <li><a class="active" href="#">Featured</a></li>
-                                        <li><a href="#">Price: Low to High</a></li>
-                                        <li><a href="#">Price: High to Low</a></li>
-                                        <li><a href="#">Release Date</a></li>
-                                        <li><a href="#">Avg. Rating</a></li>
-                                    </ul>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -228,7 +216,7 @@ $products = App\Models\Product::where('category_id',$category->id)->get();
 
 
         <li>
-            <a href="shop-grid-right.html"> <img src=" {{ asset($category->category_image) }} " alt="" />{{ $category->category_name }}</a><span class="count">{{ count($products) }}</span>
+            <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}"> <img src=" {{ asset($category->category_image) }} " alt="" />{{ $category->category_name }}</a><span class="count">{{ count($products) }}</span>
         </li>
         @endforeach 
                         </ul>

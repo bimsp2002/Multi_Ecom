@@ -31,9 +31,9 @@
 							<div class="card radius-10 bg-gradient-deepblue">
 							 <div class="card-body">
 								<div class="d-flex align-items-center">
-									<h5 class="mb-0 text-white">Rs. {{ $today }}</h5>
+									<h5 class="mb-0 text-white">Rs.{{ $today }}</h5>
 									<div class="ms-auto">
-                                        <i class='bx bx-dollar fs-3 text-white'></i>
+                                        <i class='bx bx-cart fs-3 text-white'></i>
 									</div>
 								</div>
 								<div class="progress my-3 bg-light-transparent" style="height:3px;">
@@ -41,7 +41,6 @@
 								</div>
 								<div class="d-flex align-items-center text-white">
 									<p class="mb-0">Today's Sale</p>
-									<p class="mb-0 ms-auto"><span><i class='bx bx-up-arrow-alt'></i></span></p>
 								</div>
 							</div>
 						  </div>
@@ -50,9 +49,9 @@
 							<div class="card radius-10 bg-gradient-orange">
 							<div class="card-body">
 								<div class="d-flex align-items-center">
-									<h5 class="mb-0 text-white">Rs. {{ $month }}</h5>
+									<h5 class="mb-0 text-white">Rs.{{ $month }}</h5>
 									<div class="ms-auto">
-                                        <i class='bx bx-dollar fs-3 text-white'></i>
+                                        <i class='bx bx-cart fs-3 text-white'></i>
 									</div>
 								</div>
 								<div class="progress my-3 bg-light-transparent" style="height:3px;">
@@ -60,7 +59,6 @@
 								</div>
 								<div class="d-flex align-items-center text-white">
 									<p class="mb-0">Monthly Sale</p>
-									<p class="mb-0 ms-auto"><span><i class='bx bx-up-arrow-alt'></i></span></p>
 								</div>
 							</div>
 						  </div>
@@ -69,9 +67,9 @@
 							<div class="card radius-10 bg-gradient-ohhappiness">
 							<div class="card-body">
 								<div class="d-flex align-items-center">
-									<h5 class="mb-0 text-white">Rs. {{ $year }}</h5>
+									<h5 class="mb-0 text-white">Rs.{{ $year }}</h5>
 									<div class="ms-auto">
-                                        <i class='bx bx-dollar fs-3 text-white'></i>
+                                        <i class='bx bx-group fs-3 text-white'></i>
 									</div>
 								</div>
 								<div class="progress my-3 bg-light-transparent" style="height:3px;">
@@ -79,7 +77,6 @@
 								</div>
 								<div class="d-flex align-items-center text-white">
 									<p class="mb-0">Yearly Sale</p>
-									<p class="mb-0 ms-auto"><span><i class='bx bx-up-arrow-alt'></i></span></p>
 								</div>
 							</div>
 						</div>
@@ -98,7 +95,6 @@
 								</div>
 								<div class="d-flex align-items-center text-white">
 									<p class="mb-0">Pending Orders</p>
-									<p class="mb-0 ms-auto"><span><i class='bx bx-up-arrow-alt'></i></span></p>
 								</div>
 							</div>
 						 </div>
@@ -120,7 +116,6 @@
 								</div>
 								<div class="d-flex align-items-center text-white">
 									<p class="mb-0">Total Vendor </p>
-									<p class="mb-0 ms-auto"><span><i class='bx bx-up-arrow-alt'></i></span></p>
 								</div>
 							</div>
 						 </div>
@@ -143,7 +138,6 @@
 								</div>
 								<div class="d-flex align-items-center text-white">
 									<p class="mb-0">Total User </p>
-									<p class="mb-0 ms-auto"><span><i class='bx bx-up-arrow-alt'></i></span></p>
 								</div>
 							</div>
 						 </div>
